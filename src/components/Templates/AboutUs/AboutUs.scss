@@ -1,0 +1,12 @@
+.AboutUs {
+    overflow: hidden;
+    margin-top: 80px;
+    position: relative;
+    border-bottom: 3px solid black;
+    &__image {
+        width: 700px;
+        position: absolute;
+        right: -350px;
+        bottom: 0;
+    }
+}

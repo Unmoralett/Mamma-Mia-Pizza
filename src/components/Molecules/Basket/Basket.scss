@@ -1,0 +1,18 @@
+.header__basket-img {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 17;
+    cursor: pointer;
+    height: 65px;   
+    width: auto;
+    transition: all 0.3s ease-out;
+    &:hover {
+        transform: scale(1.1);    
+    }
+    &-summ {
+        position: absolute;
+        top: 30px;
+        right: 15px;
+    }
+}

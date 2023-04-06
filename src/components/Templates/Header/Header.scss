@@ -1,0 +1,45 @@
+.header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, #0808086b 5%, #14141477 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: auto;
+    height: 10vh;
+    &__tel{
+        font-family: 'Bungee Spice', cursive;
+        cursor: pointer;
+        width: auto;
+        border: 3px solid #fc5f04;
+        border-radius: 10px;
+        padding: 10px;
+        text-decoration: none;
+        color: rgb(14, 3, 78);
+        background: none;
+        white-space: nowrap;
+        box-shadow: 3px 3px 5px 5px #fc5f042f;
+        color: white;
+        transition: all 0.2s ease-out;
+        white-space: wrap;
+        &:last-child {
+            border: none;
+            box-shadow: none
+        }
+    }
+    &__tel:hover {
+        border: 3px solid #fc1504;
+        background: none;
+        color: #fc5f04;
+        &:last-child {
+            border: none;
+            box-shadow: none
+        }
+    }
+}
+.btn {
+    border: 2px solid black;
+}

@@ -1,0 +1,31 @@
+.AboutUs__section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 50px 0px;
+    box-sizing: border-box;
+    &-card {
+        margin-bottom: 50px;
+        width: 23.7%;
+        border-radius: 10px;
+        background: rgb(253, 242, 232);
+        padding: 26px 35px 39px 26px;
+        font-size: 20px;
+        transition: all 0.2s ease-out;
+        &-title {
+            font-family: 'Bungee Spice', cursive;
+            color: rgb(236, 94, 36);
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin: 0px;
+            padding-bottom: 15px;
+        }
+        &:hover {
+            transition: 0.2s ease-in;
+            transform: translateY(-10px);
+            box-shadow: 0px 20px 20px 0px #fc5f043b;
+        }
+    }
+}

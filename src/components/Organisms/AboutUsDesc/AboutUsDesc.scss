@@ -1,0 +1,40 @@
+.AboutUs {
+    &_desc__we {
+        &-title {
+        font-family: 'Bungee Spice', cursive;
+        font-size: 52px;
+        letter-spacing: 0.02em
+        }
+        &-text {
+            padding-top: 50px;
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+    &_desc__cook {
+        &-title {
+        font-family: 'Bungee Spice', cursive;
+        margin-top: 50px;
+        font-size: 40px;
+        letter-spacing: 0.02em
+        }
+        &-text {
+            padding-top: 50px;
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+    &_desc__ingridients {
+        &-title {
+        font-family: 'Bungee Spice', cursive;
+        margin-top: 50px;
+        font-size: 40px;
+        letter-spacing: 0.02em
+        }
+        &-text {
+            padding-top: 50px;
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+}

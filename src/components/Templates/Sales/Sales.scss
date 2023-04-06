@@ -1,0 +1,23 @@
+.card-group {
+    margin: 10% 0;
+    text-align: center;
+}
+.card-title {
+    font-family: 'Bungee Spice', cursive;
+}
+.sales {
+    background: url(../../../assets/images/bg_sales.jpg) no-repeat;
+    background-size: cover;
+    height: 90vh;
+    &_title {
+    font-family: 'Bungee Spice', cursive;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10vh;
+    }
+}
+.card-img-top {
+    height: 200px;
+    width: auto;
+    border-bottom: 2px solid #000;
+}

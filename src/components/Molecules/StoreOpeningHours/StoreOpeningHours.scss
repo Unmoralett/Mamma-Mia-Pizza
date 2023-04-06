@@ -1,0 +1,11 @@
+.header__text {
+        font-family: 'Bungee Spice', cursive;
+        color: white;
+        font-size: 22px;
+        white-space: nowrap;
+        &-time {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+        }
+    }

@@ -1,0 +1,14 @@
+.CatalogProducts {
+    &_title {
+    font-family: 'Bungee Spice', cursive;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    margin: 4rem 0;
+    }
+    &_menu {
+        min-height: 85vh;
+    }
+}
