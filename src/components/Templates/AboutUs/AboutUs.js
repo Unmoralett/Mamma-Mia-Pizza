@@ -1,4 +1,6 @@
 import { Component } from '../../../core/Component';
+import { ABOUT_US_CARDS } from '../../../constants/AboutUsCards';
+import { ABOUT_US_DESC } from '../../../constants/AboutUsDescriptions';
 import '../../Organisms/AboutUsCards';
 import '../../Organisms/AboutUsDesc';
 import '../../Atoms/Image';
@@ -9,8 +11,8 @@ class AboutUs extends Component {
     return `
         <div class='AboutUs'>
             <div class='container'>
-                <it-aboutusdesc></it-aboutusdesc>
-                <it-aboutuscards></it-aboutuscards>
+                <it-aboutusdesc desc='${JSON.stringify(ABOUT_US_DESC)}'></it-aboutusdesc>
+                <it-aboutuscards cards='${JSON.stringify(ABOUT_US_CARDS)}'></it-aboutuscards>
             </div>
             <it-image
                 class='AboutUs__image'

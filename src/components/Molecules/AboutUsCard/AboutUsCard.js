@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+import './AboutUsCard.scss';
 
 class AboutUsCard extends Component {
   static get observedAttributes() {

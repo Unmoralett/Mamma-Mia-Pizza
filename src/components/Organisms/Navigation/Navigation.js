@@ -3,45 +3,28 @@ import './Navigation.scss';
 import '../../Atoms/Link';
 
 class Navigation extends Component {
+  static get observedAttributes() {
+    return ['items'];
+  }
+
   render() {
+    const nav = JSON.parse(this.props.items);
     return `
         <nav class="header__nav">
             <ul class="header__nav-ul">
-                <li>
-                    <it-link 
-                    class="header__nav-link header__nav-link--active"
-                    href="index.html"
-                    content="Главная"
-                    ></it-link>
-                </li>
-                <li>
-                    <it-link 
-                    class="header__nav-link"
-                    href="#"
-                    content="О нас"
-                    ></it-link>
-                </li>
-                <li>
-                    <it-link 
-                    class="header__nav-link"
-                    href="#"
-                    content="Галерея"
-                    ></it-link>
-                </li>
-                <li>
-                    <it-link 
-                    class="header__nav-link"
-                    href="#"
-                    content="Пицца"
-                    ></it-link>
-                </li>
-                <li>
-                    <it-link 
-                    class="header__nav-link"
-                    href="#"
-                    content="Контакты"
-                    ></it-link>
-                </li>
+                ${nav
+                  .map((item) => {
+                    return `
+                    <li>
+                        <it-link 
+                            class="header__nav-link header__nav-link--active"
+                            href="${item.href}"
+                            content="${item.label}"> 
+                        </it-link>
+                    </li>
+                `;
+                  })
+                  .join(' ')}
             </ul>
         </nav>
         `;
