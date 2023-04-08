@@ -5,7 +5,7 @@ import './Footer.scss';
 class Footer extends Component {
   render() {
     return `
-        <footer class="footer-section">
+        <footer class="footer-section" id='contacts_page'>
             <div class="container">
                 <div class="footer-cta pt-5 pb-5">
                     <div class="row">

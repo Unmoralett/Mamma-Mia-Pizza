@@ -12,7 +12,7 @@ class AboutUsCard extends Component {
     const contentText = this.props.text ? this.props.text : '';
 
     return `
-        <div class='${className}'>
+        <div class=' '>
             <h2 class='${className}-title'>${contentTitle}</h2>
             <p>${contentText}</p>
         </div>

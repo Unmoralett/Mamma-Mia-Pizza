@@ -4,7 +4,7 @@ import './Sales.scss';
 class Sales extends Component {
   render() {
     return `
-    <div class='sales'>
+    <div class='sales' id='sales_page'>
         <div class='container'>
             <h2 class='sales_title'>Акции</h2>
             <div class="card-group">

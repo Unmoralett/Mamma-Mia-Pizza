@@ -4,7 +4,7 @@ import './Gallery.scss';
 class Gallery extends Component {
   render() {
     return `
-      <div class="gallery">
+      <div class="gallery" id='gallery_page'>
         <it-galleryslide
           class='gallery_slide'
           style="background-image: url('../../../assets/images/gallery3.jpg')">

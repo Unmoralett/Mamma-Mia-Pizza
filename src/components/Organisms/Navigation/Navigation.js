@@ -7,6 +7,15 @@ class Navigation extends Component {
     return ['items'];
   }
 
+  addActiveClass = (evt) => {
+    if (evt.target.closest('.header__nav-link')) {
+      evt.target.classList.add('active');
+    }
+  };
+  componentDidMount() { 
+    this.addEventListener('click', this.addActiveClass);
+  }
+
   render() {
     const nav = JSON.parse(this.props.items);
     return `
@@ -17,7 +26,7 @@ class Navigation extends Component {
                     return `
                     <li>
                         <it-link 
-                            class="header__nav-link header__nav-link--active"
+                            class="header__nav-link"
                             href="${item.href}"
                             content="${item.label}"> 
                         </it-link>

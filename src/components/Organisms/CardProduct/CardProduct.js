@@ -3,22 +3,32 @@ import './CardProduct.scss';
 
 class CardProduct extends Component {
   static get observedAttributes() {
-    return ['img', 'name', 'price', 'desc', 'id'];
+    return ['products'];
   }
 
   render() {
+    const menu = JSON.parse(this.props.products);
     return `
-        <form class="menu__product">
-            <img alt="pizza1" src='${this.props.img}'>
-                <div>
-                    <h3 class="menu__product-title">${this.props.name}</h3>
-                    <p class="menu__product-price">${this.props.price}</p>
-                    <p class="menu__product-descr">${this.props.desc}</p>
-                    <input class='size32 item${this.props.id}' type="radio" name="size" value='32'><label for="size">32см</label>
-                    <input class='size45 item${this.props.id}' type="radio" name="size" value='45'><label for="size">45см</label>
-                    <a href="#" type='submit'><p>В корзину</p></a>
-                </div>
-        </form>
+            <div class='CatalogProducts_menu'>
+              ${menu
+                .map((item) => {
+                  return `
+                  <form class="menu__product">
+                    <img alt="pizza1" src='${item.img}'>
+                      <div>
+                          <h3 class="menu__product-title">${item.title}</h3>
+                          <p class="menu__product-price">${item.price}</p>
+                          <p class="menu__product-descr">${item.desc}</p>
+                          <input class='size32 item${item.id}' type="radio" name="size" value='32'><label for="size">32см</label>
+                          <input class='size45 item${item.id}' type="radio" name="size" value='45'><label for="size">45см</label>
+                          <a href="#" type='submit'><p>В корзину</p></a>
+                      </div>
+                  </form>
+                `;
+                })
+                .join(' ')} 
+            </div>
+
         `;
   }
 }

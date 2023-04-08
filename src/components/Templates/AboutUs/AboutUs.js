@@ -9,7 +9,7 @@ import './AboutUs.scss';
 class AboutUs extends Component {
   render() {
     return `
-        <div class='AboutUs'>
+        <div class='AboutUs' id='about_us_page'>
             <div class='container'>
                 <it-aboutusdesc desc='${JSON.stringify(ABOUT_US_DESC)}'></it-aboutusdesc>
                 <it-aboutuscards cards='${JSON.stringify(ABOUT_US_CARDS)}'></it-aboutuscards>

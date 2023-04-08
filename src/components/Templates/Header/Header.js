@@ -12,7 +12,7 @@ class Header extends Component {
   render() {
     return `
         <header class='header'>
-            <it-logo></it-logo>
+            <it-logo></it-logo>     
             <it-navigation items='${JSON.stringify(APP_ROUTES)}'></it-navigation>
             <it-storeopeninghours></it-storeopeninghours>
             <it-link

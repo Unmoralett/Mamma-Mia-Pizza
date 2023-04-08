@@ -4,7 +4,7 @@ import './MainPage.scss';
 class MainPage extends Component {
   render() {
     return `
-        <div class="mainpage">
+        <div class="mainpage" id='main_page'>
             <div class="container">
                 <div class="mainpage__text">
                     <h5 class="mainpage__text-upper">Лучшая пицца в городе</h5>

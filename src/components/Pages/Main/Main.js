@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+
 import '../../Templates/MainPage';
 import '../../Templates/Header';
 import '../../Templates/AboutUs';
@@ -14,9 +15,9 @@ class Main extends Component {
     return `
         <it-header></it-header>
         <it-mainpage></it-mainpage>
+        <it-catalogproducts></it-catalogproducts>
         <it-aboutus></it-aboutus>
         <it-gallery></it-gallery>
-        <it-catalogproducts></it-catalogproducts>
         <it-sales></it-sales>
         <it-footer></it-footer>
         `;

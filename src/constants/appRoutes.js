@@ -1,26 +1,26 @@
 export const APP_ROUTES = [
   {
     label: 'Главная',
-    href: '/',
-  },
-  {
-    label: 'О нас',
-    href: '#',
-  },
-  {
-    label: 'Галерея',
-    href: '#',
+    href: '#main_page',
   },
   {
     label: 'Меню',
-    href: '#',
+    href: '#menu_page',
+  },
+  {
+    label: 'О нас',
+    href: '#about_us_page',
+  },
+  {
+    label: 'Галерея',
+    href: '#gallery_page',
   },
   {
     label: 'Акции',
-    href: '#',
+    href: '#sales_page',
   },
   {
     label: 'Контакты',
-    href: '#',
+    href: '#contacts_page',
   },
 ];

@@ -9,7 +9,6 @@ class AboutUsDesc extends Component {
 
   render() {
     const desc = JSON.parse(this.props.desc);
-    console.log(desc);
     return `
         <div class='AboutUs_desc'>
           ${desc
