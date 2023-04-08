@@ -6,6 +6,8 @@ import '../../Organisms/CardProduct';
 import '../../Molecules/NavMenu';
 import '../../Molecules/Pagination';
 import './CatalogProducts.scss';
+import { eventEmmiter } from '../../../core/EventEmmiter';
+import { APP_EVENTS } from '../../../constants/appEvents';
 
 class CatalogProducts extends Component {
   constructor() {
@@ -27,13 +29,22 @@ class CatalogProducts extends Component {
       return {
         ...state,
         products: PRODUCTS.slice(start, end),
+        currentPage,
       };
     });
   }
 
+  onChangePaginationPage = (evt) => {
+    this.sliceData(Number(evt.detail.page));
+    window.scrollTo(0, 965, { behavior: 'smooth' });
+  };
+
   componentDidMount() {
     this.sliceData();
+    eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
   }
+
+  componentWillUnmount() {}
 
   // sizeClick(evt) {
   //   if (evt.target.closest('.size32')) {
@@ -124,8 +135,14 @@ class CatalogProducts extends Component {
         <div class='container' id='menu_page'>
             <h2 class='CatalogProducts_title'>Наше меню</h2>
             <it-navmenu></it-navmenu>
-            <it-cardproduct products='${JSON.stringify(this.state.products)}'></it-cardproduct> 
-            <it-pagination></it-pagination>
+            <it-cardproduct 
+              products='${JSON.stringify(this.state.products)}'
+            ></it-cardproduct> 
+            <it-pagination
+              total='${PRODUCTS.length}'
+              limit='${this.state.limit}'
+              current='${this.state.currentPage}'
+            ></it-pagination>
         </div>
           `;
   }
