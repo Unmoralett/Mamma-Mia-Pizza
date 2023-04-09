@@ -2,7 +2,7 @@ import { Component } from '../../../core/Component';
 
 class Link extends Component {
   static get observedAttributes() {
-    return ['class', 'href', 'content'];
+    return ['classname', 'href', 'content'];
   }
 
   onClick = (evt) => {
@@ -20,7 +20,7 @@ class Link extends Component {
   }
 
   render() {
-    const className = this.props.class ? this.props.class : '';
+    const className = this.props.classname ? this.props.classname : '';
     const content = this.props.content;
 
     return `

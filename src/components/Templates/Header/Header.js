@@ -1,6 +1,7 @@
 import { Component } from '../../../core/Component';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import '../../Molecules/Logo';
+import '../../Molecules/HeaderPhone';
 import '../../Organisms/Navigation';
 import '../../Molecules/StoreOpeningHours';
 import '../../Atoms/Link';
@@ -15,11 +16,7 @@ class Header extends Component {
             <it-logo></it-logo>     
             <it-navigation items='${JSON.stringify(APP_ROUTES)}'></it-navigation>
             <it-storeopeninghours></it-storeopeninghours>
-            <it-link
-                class="header__tel"
-                href="tel:7755"
-                content="Заказ по телефону: 7755">
-            </it-link>
+            <it-headerphone></it-headerphone>
             <it-basket></it-basket>
             <it-burger></it-burger>
         </header>

@@ -12,7 +12,7 @@ class Navigation extends Component {
       evt.target.classList.add('active');
     }
   };
-  componentDidMount() { 
+  componentDidMount() {
     this.addEventListener('click', this.addActiveClass);
   }
 
@@ -26,7 +26,7 @@ class Navigation extends Component {
                     return `
                     <li>
                         <it-link 
-                            class="header__nav-link"
+                            classname="header__nav-link"
                             href="${item.href}"
                             content="${item.label}"> 
                         </it-link>

@@ -1,0 +1,22 @@
+.header__tel{
+    font-family: 'Bungee Spice', cursive;
+    cursor: pointer;
+    width: auto;
+    border: 3px solid #fc5f04;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: rgb(14, 3, 78);
+    white-space: nowrap;
+    box-shadow: 3px 3px 5px 5px #fc5f042f;
+    color: white;
+    transition: all 0.2s ease-out;
+    white-space: wrap;
+    padding: 14px;
+    &:hover {
+        border: 3px solid green;
+        background: none;
+        color: #fc5f04;
+        box-shadow: 5px 5px 7px 7px #57f8362f;
+    }
+}

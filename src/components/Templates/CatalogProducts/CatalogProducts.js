@@ -1,13 +1,14 @@
 import { Component } from '../../../core/Component';
 import { PRODUCTS } from '../../../constants/products';
+import { eventEmmiter } from '../../../core/EventEmmiter';
+import { APP_EVENTS } from '../../../constants/appEvents';
+import { CATEGORY_PRODUCTS } from '../../../constants/categoryProducts';
 
 import '../../Atoms/Link';
 import '../../Organisms/CardProduct';
 import '../../Molecules/NavMenu';
 import '../../Molecules/Pagination';
 import './CatalogProducts.scss';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { APP_EVENTS } from '../../../constants/appEvents';
 
 class CatalogProducts extends Component {
   constructor() {
@@ -19,32 +20,63 @@ class CatalogProducts extends Component {
     };
   }
 
+  scrollMenu = () => {
+    window.scrollTo(0, 965, { behavior: 'smooth' });
+  };
+
   sliceData(currentPage = 1) {
     const { limit } = this.state;
 
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
 
-    this.setState((state) => {
-      return {
-        ...state,
-        products: PRODUCTS.slice(start, end),
-        currentPage,
-      };
-    });
+    return this.state.products.slice(start, end);
   }
 
   onChangePaginationPage = (evt) => {
-    this.sliceData(Number(evt.detail.page));
-    window.scrollTo(0, 965, { behavior: 'smooth' });
+    this.setState((state) => {
+      return {
+        ...state,
+        currentPage: Number(evt.detail.page),
+      };
+    });
+    this.scrollMenu();
+  };
+
+  filterMenu = (label) => {
+    this.scrollMenu();
+    this.setState((state) => {
+      return {
+        ...state,
+        products: PRODUCTS.filter((item) => item.category === label),
+        currentPage: 1,
+      };
+    });
+  };
+
+  onChangeCategoryMenu = (evt) => {
+    const { label } = evt.detail;
+    if (label === 'Пицца') {
+      this.filterMenu(label);
+    }
+    if (label === 'Десерты') {
+      this.filterMenu(label);
+    }
+    if (label === 'Напитки') {
+      this.filterMenu(label);
+    }
   };
 
   componentDidMount() {
     this.sliceData();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmmiter.on(APP_EVENTS.changeCategoryMenu, this.onChangeCategoryMenu);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmmiter.off(APP_EVENTS.changeCategoryMenu, this.onChangeCategoryMenu);
+  }
 
   // sizeClick(evt) {
   //   if (evt.target.closest('.size32')) {
@@ -134,12 +166,14 @@ class CatalogProducts extends Component {
     return `
         <div class='container' id='menu_page'>
             <h2 class='CatalogProducts_title'>Наше меню</h2>
-            <it-navmenu></it-navmenu>
+            <it-navmenu 
+              links='${JSON.stringify(CATEGORY_PRODUCTS)}'
+            ></it-navmenu>
             <it-cardproduct 
-              products='${JSON.stringify(this.state.products)}'
+              products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
             ></it-cardproduct> 
             <it-pagination
-              total='${PRODUCTS.length}'
+              total='${this.state.products.length}'
               limit='${this.state.limit}'
               current='${this.state.currentPage}'
             ></it-pagination>
