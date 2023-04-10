@@ -2,11 +2,11 @@ import { Component } from '../../../core/Component';
 
 class Button extends Component {
   static get observedAttributes() {
-    return ['class', 'type', 'content'];
+    return ['classname', 'type', 'content'];
   }
 
   render() {
-    const className = this.props.class ? this.props.class : '';
+    const className = this.props.classname ? this.props.classname : '';
     const buttonType = this.props.type ? this.props.type : 'button';
 
     return `

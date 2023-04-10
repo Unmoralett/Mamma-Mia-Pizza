@@ -3,20 +3,23 @@ import '../../Atoms/Image';
 import './CartCounter.scss';
 
 class CartCounter extends Component {
+  static get observedAttributes() {
+    return ['count'];
+  }
   render() {
     return `
         <div class="header__burger-pizzaCart_calc">
             <it-button
                 type="button"
-                class="header__burger-pizzaCart_calc-btn btn btn-danger fw-bold"
+                classname="header__burger-pizzaCart_calc-btn btn btn-danger fw-bold"
                 content="-">
             </it-button>   
 
-            <p class="quantity m-0 p-2">1</p>
+            <p class="quantity m-0 p-2">${this.props.count}</p>
             
             <it-button
                 type="button"
-                class="header__burger-pizzaCart_calc-btn btn btn-success fw-bold"
+                classname="header__burger-pizzaCart_calc-btn btn btn-success fw-bold"
                 content="+">
             </it-button>   
         </div>

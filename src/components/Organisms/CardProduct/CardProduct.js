@@ -1,17 +1,21 @@
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
+import { PRODUCTS } from '../../../constants/products';
 import { Component } from '../../../core/Component';
 import { storageService } from '../../../services/StorageService';
 import './CardProduct.scss';
 
 class CardProduct extends Component {
   static get observedAttributes() {
-    return ['products'];
+    return ['filteredproducts'];
   }
 
   addToCart = (evt) => {
     if (evt.target.parentElement.closest('.addtocart')) {
       const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItems, evt.target.dataset.id]);
+      storageService.setItem(APP_STORAGE_KEYS.cartData, [
+        ...allItems,
+        PRODUCTS[evt.target.dataset.id - 1],
+      ]);
     }
   };
 
@@ -24,7 +28,7 @@ class CardProduct extends Component {
   }
 
   render() {
-    const menu = JSON.parse(this.props.products);
+    const menu = JSON.parse(this.props.filteredproducts);
     return `
             <div class='CatalogProducts_menu'>
               ${menu

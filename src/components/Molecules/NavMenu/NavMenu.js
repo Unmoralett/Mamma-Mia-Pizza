@@ -7,7 +7,7 @@ import { APP_EVENTS } from '../../../constants/appEvents';
 
 class NavMenu extends Component {
   static get observedAttributes() {
-    return ['links'];
+    return ['links', 'current'];
   }
 
   onChangeCategory = (evt) => {
@@ -31,10 +31,15 @@ class NavMenu extends Component {
     return `
         <nav class="CatalogProducts_nav nav nav-pills nav-fill">
             ${links
-              .map((item) => {
+              .map((item, index) => {
+                const page = index + 1;
+                const current = this.props.current;
+                const isActive = page === Number(current);
                 return `
                 <it-link
-                    classname="nav-link link-success border border-2 border-warning"
+                    classname="nav-link link-success border border-2 border-warning ${
+                      isActive ? 'active' : ''
+                    }"
                     href=""
                     content='${item.label}'
                     data-label='${item.label}'

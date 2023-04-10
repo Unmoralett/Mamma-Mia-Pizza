@@ -18,6 +18,7 @@ class CatalogProducts extends Component {
       limit: 8,
       currentPage: 1,
     };
+    this.currentCategory = 0;
   }
 
   scrollMenu = () => {
@@ -57,12 +58,15 @@ class CatalogProducts extends Component {
   onChangeCategoryMenu = (evt) => {
     const { label } = evt.detail;
     if (label === 'Пицца') {
+      this.currentCategory = 1;
       this.filterMenu(label);
     }
     if (label === 'Десерты') {
+      this.currentCategory = 2;
       this.filterMenu(label);
     }
     if (label === 'Напитки') {
+      this.currentCategory = 3;
       this.filterMenu(label);
     }
   };
@@ -168,9 +172,10 @@ class CatalogProducts extends Component {
             <h2 class='CatalogProducts_title'>Наше меню</h2>
             <it-navmenu 
               links='${JSON.stringify(CATEGORY_PRODUCTS)}'
+              current='${this.currentCategory}'
             ></it-navmenu>
             <it-cardproduct 
-              products='${JSON.stringify(this.sliceData(this.state.currentPage))}'
+              filteredproducts='${JSON.stringify(this.sliceData(this.state.currentPage))}'
             ></it-cardproduct> 
             <it-pagination
               total='${this.state.products.length}'
