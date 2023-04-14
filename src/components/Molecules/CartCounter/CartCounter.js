@@ -1,10 +1,29 @@
+import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 import '../../Atoms/Image';
 import './CartCounter.scss';
 
 class CartCounter extends Component {
   static get observedAttributes() {
     return ['count'];
+  }
+////////
+  pressButton = (evt) => {
+    evt.preventDefault();
+    if (evt.target.closest('.btn-danger')) {
+      eventEmmiter.emit(APP_EVENTS.cartcounter, { counter: Number(this.props.count) - 1 });
+    }
+    if (evt.target.closest('.btn-success')) {
+      eventEmmiter.emit(APP_EVENTS.cartcounter, { counter: Number(this.props.count) + 1 });
+    }
+  };
+
+  componentDidMount() {
+    this.addEventListener('click', this.pressButton);
+  }
+  componentWillUnmount() {
+    this.removeEventListener('click', this.pressButton);
   }
   render() {
     return `

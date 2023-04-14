@@ -58,9 +58,13 @@ class Burger extends Component {
           return item;
         })
         .filter((item) => Boolean(item.quantity));
-      console.log(filteredItems);
       storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
     }
+  };
+  ////////////////////////////////////
+  count = (evt) => {
+    const { counter } = evt.detail;
+    console.log(counter);
   };
 
   componentDidMount() {
@@ -68,11 +72,13 @@ class Burger extends Component {
     this.setProducts(items ?? []);
     this.addEventListener('click', this.onDeleteItem);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
+    eventEmmiter.on(APP_EVENTS.cartcounter, this.count);
   }
 
   componentWillUnmount() {
     this.removeEventListener('click', this.onDeleteItem);
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
+    eventEmmiter.off(APP_EVENTS.cartcounter, this.count);
   }
   render() {
     return `
