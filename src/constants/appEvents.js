@@ -3,4 +3,5 @@ export const APP_EVENTS = {
   changeCategoryMenu: 'changeCategoryMenu',
   storage: 'storage',
   cartcounter: 'cartcounter',
+  changeTab: 'changetab',
 };
