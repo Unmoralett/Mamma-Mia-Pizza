@@ -7,6 +7,7 @@ import '../../Molecules/Gallery';
 import '../../Templates/CatalogProducts';
 import '../../Templates/Sales';
 import '../../Templates/Footer';
+import '../../Pages/AdminPage';
 
 import './Main.scss';
 
@@ -20,6 +21,7 @@ class Main extends Component {
         <it-gallery></it-gallery>
         <it-sales></it-sales>
         <it-footer></it-footer>
+        <admin-page></admin-page>
         `;
   }
 }
