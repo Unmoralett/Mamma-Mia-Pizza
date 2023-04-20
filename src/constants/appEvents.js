@@ -4,4 +4,7 @@ export const APP_EVENTS = {
   storage: 'storage',
   cartcounter: 'cartcounter',
   changeTab: 'changetab',
+  createCategory: 'createCategory',
+  createProduct: 'createProduct',
+  createSales: 'createSales',
 };

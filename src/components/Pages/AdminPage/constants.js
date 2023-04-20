@@ -12,3 +12,9 @@ export const menuItems = [
     label: 'Акции',
   },
 ];
+
+export const forms = {
+  1: '<category-form></category-form>',
+  2: '<product-form></product-form>',
+  3: '<sales-form></sales-form>',
+};

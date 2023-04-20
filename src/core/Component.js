@@ -4,16 +4,28 @@ export class Component extends HTMLElement {
     super();
     this.state = {};
     this.props = {};
+    //
+    this.isShadow = false;
   }
   //cледит за изм state и обновляет рендер
   setState(callback) {
     this.state = callback(this.state);
-    this.innerHTML = this.render();
+    if (this.isShadow) {
+      this.shadowRoot.innerHTML = this.render();
+    } else {
+      this.innerHTML = this.render();
+    }
   }
   //выполняется как только наша разметка встраивается в dom-дерево
   connectedCallback() {
+    if (this.isShadow) {
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.innerHTML = this.render();
+    } else {
+      this.innerHTML = this.render();
+    }
+
     this.componentDidMount();
-    this.innerHTML = this.render();
   }
   //отписка от событий(удаляемся из dom-дерева)
   disconnectedCallback() {
