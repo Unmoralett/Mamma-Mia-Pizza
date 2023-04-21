@@ -7,4 +7,7 @@ export const APP_EVENTS = {
   createCategory: 'createCategory',
   createProduct: 'createProduct',
   createSales: 'createSales',
+  signUp: 'signUp',
+  signIn: 'signIn',
+  authorizeUser: 'authorizeUser',
 };

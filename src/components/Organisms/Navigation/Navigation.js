@@ -1,6 +1,7 @@
 import { Component } from '../../../core/Component';
 import './Navigation.scss';
 import '../../Atoms/Link';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 
 class Navigation extends Component {
   static get observedAttributes() {
@@ -12,6 +13,7 @@ class Navigation extends Component {
       evt.target.classList.add('active');
     }
   };
+
   componentDidMount() {
     this.addEventListener('click', this.addActiveClass);
   }
