@@ -21,7 +21,7 @@ class SignOutPage extends Component {
   render() {
     return `
         <it-preloader is-loading='${JSON.stringify(true)}'>
-            <h2>You are signed out</h2>
+            <h2>You are signed out...</h2>
         </it-preloader>
         `;
   }

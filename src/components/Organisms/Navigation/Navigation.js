@@ -24,7 +24,6 @@ class Navigation extends Component {
 
   render() {
     const nav = JSON.parse(this.props.items);
-    console.log(nav);
     return `
         <nav class="header__nav">
             <ul class="header__nav-ul">

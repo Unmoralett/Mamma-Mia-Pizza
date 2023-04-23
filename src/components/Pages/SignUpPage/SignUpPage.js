@@ -34,7 +34,6 @@ class SignUpPage extends Component {
   };
 
   register = async ({ detail }) => {
-    console.log('user');
     const { data } = detail;
     this.setIsLoading(true);
     try {
