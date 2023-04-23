@@ -36,11 +36,11 @@ class CardProduct extends Component {
                   if (item.price32 === '' || null || undefined) {
                     return `
                   <form class="menu__product">
-                    <img alt="pizza1" src='${item.img}'>
+                    <img alt="pizza1" src='${item.preview}'>
                     <div>
                         <h3 class="menu__product-title">${item.title}</h3>
                         <p class="menu__product-price">${item.price}</p>
-                        <p class="menu__product-descr">${item.desc}</p>
+                        <p class="menu__product-descr">${item.description}</p>
                         <a href="#" type='submit' class='addtocart'><p data-id='${item.id}'>В корзину</p></a>
                     </div>
                   </form>
@@ -48,11 +48,11 @@ class CardProduct extends Component {
                   } else {
                     return `
                   <form class="menu__product">
-                    <img alt="pizza1" src='${item.img}'>
+                    <img alt="pizza1" src='${item.preview}'>
                     <div>
                         <h3 class="menu__product-title">${item.title}</h3>
                         <p class="menu__product-price">${item.price}</p>
-                        <p class="menu__product-descr">${item.desc}</p>
+                        <p class="menu__product-descr">${item.description}</p>
                         <input class='size32 item${item.id}' type="radio" name="size" value='32'><label for="size">32см</label>
                         <input class='size45 item${item.id}' type="radio" name="size" value='45'><label for="size">45см</label>
                         <a href="#" type='submit' class='addtocart'><p data-id='${item.id}'>В корзину</p></a>

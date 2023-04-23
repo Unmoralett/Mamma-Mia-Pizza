@@ -1,5 +1,4 @@
 import { Component } from '../../../core/Component';
-import { PRODUCTS } from '../../../constants/products';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { CATEGORY_PRODUCTS } from '../../../constants/categoryProducts';
@@ -16,7 +15,7 @@ class CatalogProducts extends Component {
   constructor() {
     super();
     this.state = {
-      products: PRODUCTS,
+      products: [],
       limit: 8,
       currentPage: 1,
     };
@@ -51,7 +50,7 @@ class CatalogProducts extends Component {
     this.setState((state) => {
       return {
         ...state,
-        products: PRODUCTS.filter((item) => item.category === label),
+        products: this.state.products.filter((item) => item.category === label),
         currentPage: 1,
       };
     });
@@ -73,15 +72,26 @@ class CatalogProducts extends Component {
     }
   };
 
+  setProducts(products) {
+    this.setState((state) => {
+      return {
+        ...state,
+        products,
+      };
+    });
+  }
+
   getProducts = async () => {
     try {
       const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
+      this.setProducts(products);
     } catch (error) {
       console.error(error);
     }
   };
 
   componentDidMount() {
+    this.getProducts();
     this.sliceData();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.on(APP_EVENTS.changeCategoryMenu, this.onChangeCategoryMenu);
