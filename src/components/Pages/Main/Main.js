@@ -9,6 +9,7 @@ import '../../Templates/Sales';
 import '../../Templates/Footer';
 import '../../Molecules/Preloader';
 import './Main.scss';
+import { appGallery } from '../../../constants/appGallery';
 
 class Main extends Component {
   render() {
@@ -17,7 +18,7 @@ class Main extends Component {
         <it-mainpage></it-mainpage>
         <it-catalogproducts></it-catalogproducts>
         <it-aboutus></it-aboutus>
-        <it-gallery></it-gallery>
+        <it-gallery slides='${JSON.stringify(appGallery)}'></it-gallery>
         <it-sales></it-sales>
         <it-footer></it-footer>
       </it-preloader>
