@@ -4,6 +4,7 @@ import '../../Molecules/Preloader';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { authService } from '../../../services/Auth';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 
 class SignUpPage extends Component {
   constructor() {
@@ -33,11 +34,13 @@ class SignUpPage extends Component {
   };
 
   register = async ({ detail }) => {
+    console.log('user');
     const { data } = detail;
     this.setIsLoading(true);
     try {
       const user = await authService.signUp(data.email, data.password);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
     } catch (error) {
       this.setError(error.message);
     } finally {

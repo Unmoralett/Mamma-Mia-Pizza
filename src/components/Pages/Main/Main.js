@@ -1,4 +1,7 @@
 import { Component } from '../../../core/Component';
+import { authService } from '../../../services/Auth';
+import { eventEmmiter } from '../../../core/EventEmmiter';
+import { APP_EVENTS } from '../../../constants/appEvents';
 
 import '../../Templates/MainPage';
 import '../../Templates/Header';
@@ -7,15 +10,8 @@ import '../../Molecules/Gallery';
 import '../../Templates/CatalogProducts';
 import '../../Templates/Sales';
 import '../../Templates/Footer';
-import '../../Pages/AdminPage';
-import '../../Pages/SignUpPage';
-import '../../Pages/SignInPage';
 import '../../Molecules/Preloader';
-
 import './Main.scss';
-import { authService } from '../../../services/Auth';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { APP_EVENTS } from '../../../constants/appEvents';
 
 class Main extends Component {
   constructor() {
@@ -63,9 +59,6 @@ class Main extends Component {
         <it-gallery></it-gallery>
         <it-sales></it-sales>
         <it-footer></it-footer>
-        <admin-page></admin-page>
-        <sign-up-page></sign-up-page>
-        <sign-in-page></sign-in-page>
       </it-preloader>
         `;
   }

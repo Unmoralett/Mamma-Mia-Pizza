@@ -1,5 +1,5 @@
 import { Component } from '../../../core/Component';
-import { APP_ROUTES } from '../../../constants/appRoutes';
+import { appPages } from '../../../constants/appPages';
 import '../../Molecules/Logo';
 import '../../Molecules/HeaderPhone';
 import '../../Organisms/Navigation';
@@ -14,7 +14,7 @@ class Header extends Component {
     return `
         <header class='header'>
             <it-logo></it-logo>     
-            <it-navigation items='${JSON.stringify(APP_ROUTES)}'></it-navigation>
+            <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
             <it-storeopeninghours></it-storeopeninghours>
             <it-headerphone></it-headerphone>
             <it-basket></it-basket>

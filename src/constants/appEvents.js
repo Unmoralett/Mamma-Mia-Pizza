@@ -2,6 +2,7 @@ export const APP_EVENTS = {
   changePaginationPage: 'changePaginationPage',
   changeCategoryMenu: 'changeCategoryMenu',
   storage: 'storage',
+  changeRoute: 'change-route',
   cartcounter: 'cartcounter',
   changeTab: 'changetab',
   createCategory: 'createCategory',

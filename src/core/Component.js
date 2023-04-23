@@ -4,7 +4,6 @@ export class Component extends HTMLElement {
     super();
     this.state = {};
     this.props = {};
-    //
     this.isShadow = false;
   }
   //cледит за изм state и обновляет рендер

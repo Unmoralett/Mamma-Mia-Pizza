@@ -9,6 +9,8 @@ import '../../Organisms/CardProduct';
 import '../../Molecules/NavMenu';
 import '../../Molecules/Pagination';
 import './CatalogProducts.scss';
+import { databaseService } from '../../../services/DatabaseService';
+import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 
 class CatalogProducts extends Component {
   constructor() {
@@ -68,6 +70,14 @@ class CatalogProducts extends Component {
     if (label === 'Напитки') {
       this.currentCategory = 3;
       this.filterMenu(label);
+    }
+  };
+
+  getProducts = async () => {
+    try {
+      const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
+    } catch (error) {
+      console.error(error);
     }
   };
 
