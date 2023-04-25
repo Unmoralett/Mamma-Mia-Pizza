@@ -10,6 +10,8 @@ import '../../Molecules/Pagination';
 import './CatalogProducts.scss';
 import { databaseService } from '../../../services/DatabaseService';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
+import { storageService } from '../../../services/StorageService';
+import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 
 class CatalogProducts extends Component {
   constructor() {
@@ -45,29 +47,36 @@ class CatalogProducts extends Component {
     this.scrollMenu();
   };
 
-  filterMenu = (label) => {
-    this.scrollMenu();
-    this.setState((state) => {
-      return {
-        ...state,
-        products: this.state.products.filter((item) => item.category === label),
-        currentPage: 1,
-      };
-    });
+  filterMenu = async (label) => {
+    try {
+      this.currentCategory = label;
+      this.scrollMenu();
+      const products = await databaseService
+        .getCollection(FIRESTORE_KEYS.products)
+        .then((items) => {
+          return items;
+        });
+      this.setState((state) => {
+        return {
+          ...state,
+          products: products.filter((item) => item.category === label),
+          currentPage: 1,
+        };
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   onChangeCategoryMenu = (evt) => {
     const { label } = evt.detail;
     if (label === 'Пицца') {
-      this.currentCategory = 1;
       this.filterMenu(label);
     }
     if (label === 'Десерты') {
-      this.currentCategory = 2;
       this.filterMenu(label);
     }
     if (label === 'Напитки') {
-      this.currentCategory = 3;
       this.filterMenu(label);
     }
   };
@@ -101,90 +110,6 @@ class CatalogProducts extends Component {
     eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.off(APP_EVENTS.changeCategoryMenu, this.onChangeCategoryMenu);
   }
-
-  // sizeClick(evt) {
-  //   if (evt.target.closest('.size32')) {
-  //     switch (evt.target.className) {
-  //       case 'size32 item1':
-  //         this.pizza[0].price = this.pizza[0].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item2':
-  //         this.pizza[1].price = this.pizza[1].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item3':
-  //         this.pizza[2].price = this.pizza[2].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item4':
-  //         this.pizza[3].price = this.pizza[3].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item5':
-  //         this.pizza[4].price = this.pizza[4].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item6':
-  //         this.pizza[5].price = this.pizza[5].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item7':
-  //         this.pizza[6].price = this.pizza[6].price32;
-  //         this.render();
-  //         break;
-  //       case 'size32 item8':
-  //         this.pizza[7].price = this.pizza[7].price32;
-  //         this.render();
-  //         break;
-
-  //       default:
-  //         break;
-  //     }
-  //   } else if (evt.target.closest('.size45')) {
-  //     switch (evt.target.className) {
-  //       case 'size45 item1':
-  //         this.pizza[0].price = this.pizza[0].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item2':
-  //         this.pizza[1].price = this.pizza[1].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item3':
-  //         this.pizza[2].price = this.pizza[2].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item4':
-  //         this.pizza[3].price = this.pizza[3].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item5':
-  //         this.pizza[4].price = this.pizza[4].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item6':
-  //         this.pizza[5].price = this.pizza[5].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item7':
-  //         this.pizza[6].price = this.pizza[6].price45;
-  //         this.render();
-  //         break;
-  //       case 'size45 item8':
-  //         this.pizza[7].price = this.pizza[7].price45;
-  //         this.render();
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   }
-  // }
-
-  // connectedCallback() {
-  //   this.render();
-  //   this.addEventListener('click', this.sizeClick);
-  // }
 
   render() {
     return `

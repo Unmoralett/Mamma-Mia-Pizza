@@ -24,17 +24,18 @@ class NavMenu extends Component {
     this.addEventListener('click', this.onChangeCategory);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.removeEventListener('click', this.onChangeCategory);
+  }
 
   render() {
     const links = JSON.parse(this.props.links);
     return `
         <nav class="CatalogProducts_nav nav nav-pills nav-fill">
             ${links
-              .map((item, index) => {
-                const page = index + 1;
+              .map((item) => {
                 const current = this.props.current;
-                const isActive = page === Number(current);
+                const isActive = item.label === current;
                 return `
                 <it-link
                     classname="nav-link link-success border border-2 border-warning ${

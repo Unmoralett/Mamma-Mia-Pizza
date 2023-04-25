@@ -10,6 +10,7 @@ import '../../Organisms/Burger';
 import './Header.scss';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { ADMIN } from '../../../constants/userRoles';
+import { storageService } from '../../../services/StorageService';
 
 class Header extends Component {
   static get observedAttributes() {
@@ -17,10 +18,10 @@ class Header extends Component {
   }
 
   getItems() {
-    const user = JSON.parse(this.props.user);
-    console.log(user);
+    // const user = JSON.parse(this.props.user);
+    const user = storageService.getItem('user');
     if (user) {
-      if (toString(user.email) === ADMIN) {
+      if (user.email === ADMIN) {
         return appPages.filter((menuItem) => {
           return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
         });

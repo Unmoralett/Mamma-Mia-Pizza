@@ -8,7 +8,6 @@ class Gallery extends Component {
 
   render() {
     const slides = JSON.parse(this.props.slides);
-    console.log(slides);
     return `
       <div class="gallery" id='gallery_page'>
         ${slides

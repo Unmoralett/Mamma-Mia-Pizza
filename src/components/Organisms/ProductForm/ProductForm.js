@@ -58,6 +58,12 @@ class ProductForm extends Component {
                     <input name='title' type='text' class='form-control'>
                 </label>
             </div>
+            <div class='mb-3'> 
+                <label class='form-label w-100'>
+                    <p>Category</p>
+                    <input name='category' type='text' class='form-control'>
+                </label>
+            </div>
             <div class="mb-3">
                 <label class="form-label w-100">
                     <p>Download a file</p>

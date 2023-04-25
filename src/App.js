@@ -11,6 +11,7 @@ import './components/Templates/Header';
 import { authService } from './services/Auth';
 import { eventEmmiter } from './core/EventEmmiter';
 import { APP_EVENTS } from './constants/appEvents';
+import { storageService } from './services/StorageService';
 
 class App extends Component {
   constructor() {
@@ -44,6 +45,7 @@ class App extends Component {
     try {
       const user = await authService.authorizeUser();
       this.setUser(user);
+      storageService.setItem('user', user);
     } catch (error) {
       console.error(error);
     } finally {
@@ -65,7 +67,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.user);
     return `
     <it-preloader is-loading="${this.state.isLoading}">
       <it-header user='${JSON.stringify(this.state.user)}'></it-header> 

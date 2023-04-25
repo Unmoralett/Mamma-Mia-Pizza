@@ -1,6 +1,8 @@
+import { APP_EVENTS } from '../../../constants/appEvents';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
-import { PRODUCTS } from '../../../constants/products';
 import { Component } from '../../../core/Component';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 import { storageService } from '../../../services/StorageService';
 import './CardProduct.scss';
 
@@ -11,11 +13,16 @@ class CardProduct extends Component {
 
   addToCart = (evt) => {
     if (evt.target.parentElement.closest('.addtocart')) {
-      const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-      storageService.setItem(APP_STORAGE_KEYS.cartData, [
-        ...allItems,
-        PRODUCTS[evt.target.dataset.id - 1],
-      ]);
+      if (storageService.getItem('user')) {
+        const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+        const menu = JSON.parse(this.props.filteredproducts);
+        storageService.setItem(APP_STORAGE_KEYS.cartData, [
+          ...allItems,
+          menu[evt.target.dataset.id],
+        ]);
+      } else {
+        eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.signIn });
+      }
     }
   };
 
@@ -32,36 +39,22 @@ class CardProduct extends Component {
     return `
             <div class='CatalogProducts_menu'>
               ${menu
-                .map((item) => {
-                  if (item.price32 === '' || null || undefined) {
-                    return `
+                .map((item, index) => {
+                  return `
                   <form class="menu__product">
                     <img alt="pizza1" src='${item.preview}'>
                     <div>
                         <h3 class="menu__product-title">${item.title}</h3>
-                        <p class="menu__product-price">${item.price}</p>
+                        <p class="menu__product-price">${item.price} BYN</p>
                         <p class="menu__product-descr">${item.description}</p>
-                        <a href="#" type='submit' class='addtocart'><p data-id='${item.id}'>В корзину</p></a>
+                        <a type='submit' class='addtocart'>
+                          <p data-id='${index}'>В корзину</p>
+                        </a>
                     </div>
                   </form>
-                `;
-                  } else {
-                    return `
-                  <form class="menu__product">
-                    <img alt="pizza1" src='${item.preview}'>
-                    <div>
-                        <h3 class="menu__product-title">${item.title}</h3>
-                        <p class="menu__product-price">${item.price}</p>
-                        <p class="menu__product-descr">${item.description}</p>
-                        <input class='size32 item${item.id}' type="radio" name="size" value='32'><label for="size">32см</label>
-                        <input class='size45 item${item.id}' type="radio" name="size" value='45'><label for="size">45см</label>
-                        <a href="#" type='submit' class='addtocart'><p data-id='${item.id}'>В корзину</p></a>
-                    </div>
-                  </form>
-                `;
-                  }
+                  `;
                 })
-                .join(' ')} 
+                .join('')} 
             </div>
         `;
   }

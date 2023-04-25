@@ -1,3 +1,4 @@
+
 .card-group {
     margin: 10% 0;
     text-align: center;
@@ -8,7 +9,7 @@
 .sales {
     background: url(../../../assets/images/bg_sales.jpg) no-repeat;
     background-size: cover;
-    height: 90vh;
+    // height: 90vh;
     &_title {
     font-family: 'Bungee Spice', cursive;
     text-align: center;
@@ -21,3 +22,22 @@
     width: auto;
     border-bottom: 2px solid #000;
 }
+
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }

@@ -8,7 +8,11 @@
     "build": "webpack --config webpack.build.config.js",
     "start": "webpack serve --open --config webpack.dev.config.js",
     "eslint": "eslint",
-    "eslint:fix": "eslint --fix --ext .js src"
+    "eslint:fix": "eslint --fix --ext .js src",
+    "firebase:login": "firebase login",
+    "firebase:init": "firebase init",
+    "firebase:logout": "firebase logout",
+    "firebase:deploy": "firebase deploy"
   },
   "keywords": [],
   "author": "Aliaksandr Hlushak",
@@ -39,6 +43,7 @@
     "bootstrap": "^5.2.3",
     "dotenv-webpack": "^8.0.1",
     "firebase": "^9.20.0",
-    "reset.css": "^2.0.2"
+    "reset.css": "^2.0.2",
+    "swiper": "^9.2.4"
   }
 }

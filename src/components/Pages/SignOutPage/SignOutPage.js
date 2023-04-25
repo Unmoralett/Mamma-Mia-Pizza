@@ -3,6 +3,7 @@ import { APP_ROUTES } from '../../../constants/appRoutes';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { authService } from '../../../services/Auth';
+import { storageService } from '../../../services/StorageService';
 import '../../Molecules/Preloader';
 
 class SignOutPage extends Component {
@@ -12,6 +13,7 @@ class SignOutPage extends Component {
       .then(() => {
         eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
         eventEmmiter.emit(APP_EVENTS.authorizeUser, { user: null });
+        storageService.removeItem('user');
       })
       .catch((error) => {
         console.error(error);
