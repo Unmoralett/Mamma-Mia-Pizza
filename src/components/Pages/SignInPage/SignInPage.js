@@ -2,6 +2,7 @@ import { Component } from '../../../core/Component';
 import '../../Organisms/RegisterForm';
 import '../../Organisms/SignInForm';
 import '../../Molecules/Preloader';
+import './SignInPage.scss';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { authService } from '../../../services/Auth';
@@ -50,12 +51,36 @@ class SignInPage extends Component {
     }
   };
 
+  toggleEnter(evt) {
+    const signIn = document.querySelector('.connexion');
+    const signUp = document.querySelector('.enregistrer');
+    const btnSignUp = document.querySelector('.btn-enregistrer');
+    const btnSignIn = document.querySelector('.btn-connexion');
+
+    if (evt.target.closest('.btn-enregistrer')) {
+      signIn.classList.add('remove-section');
+      signUp.classList.remove('active-section');
+      btnSignUp.classList.remove('active');
+      btnSignIn.classList.add('active');
+      console.log(signIn, signUp, btnSignUp, btnSignIn);
+    }
+    if (evt.target.closest('.btn-connexion')) {
+      signIn.classList.remove('remove-section');
+      signUp.classList.add('active-section');
+      btnSignUp.classList.add('active');
+      btnSignIn.classList.remove('active');
+      console.log(signIn, signUp, btnSignUp, btnSignIn);
+    }
+  }
+
   componentDidMount() {
     eventEmmiter.on(APP_EVENTS.signIn, this.signIn);
+    this.addEventListener('click', this.toggleEnter);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.signIn, this.signIn);
+    this.addEventListener('click', this.toggleEnter);
   }
 
   render() {
@@ -63,20 +88,61 @@ class SignInPage extends Component {
 
     return `
     <it-preloader is-loading='${this.state.isLoading}'>
-        <div class='container mt-5'>
-            <h2 class='text-center mt-5'>Sign In</h2>
-            <div class='row justify-content-center'>
-                <div class='col-6'>
-                    <div class='border p-5'>
-                      <div class="invalid-feedback d-block">${message}</div>
-                      <sign-in-form></sign-in-form>
-                    </div>
-                </div>
-            </div>
+    <div class="content">
+      <div class="content_container">
+        <div class="menu">
+          <a href="#connexion" class="a-toggle btn-connexion"><h2 class='h2'>SIGN IN</h2></a>
+          <a href="#enregistrer" class="a-toggle btn-enregistrer"><h2 class='h2'>SIGN UP</h2></a>
         </div>
+
+        <div class="connexion">
+          <div class="contact-form">
+            <label class='label'>USERNAME</label>
+            <input class='input' placeholder="" type="text">
+            
+            <label class='label'>PASSWORD</label>
+            <input class='input' placeholder="" type="text">
+  
+            <input class="input submit" value="SIGN IN" type="submit">
+          </div>
+        </div>
+        
+        <div class="enregistrer active-section">
+          <div class="contact-form">
+            <label class='label'>USERNAME</label>
+            <input class='input' placeholder="" type="text">
+            
+            <label class='label'>E-MAIL</label>
+            <input class='input' placeholder="" type="text">	
+            
+            <label class='label'>PASSWORD</label>
+            <input class='input' placeholder="" type="text">
+            
+            <label class='label'>CONFIRM PASSWORD</label>
+            <input class='input' placeholder="" type="text">
+            
+            <input class="submit input" value="SIGN UP" type="submit">	
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  
     </it-preloader>
     `;
   }
 }
 
 customElements.define('sign-in-page', SignInPage);
+
+/* <div class='container mt-5'>
+<h2 class='text-center mt-5'>Sign In</h2>
+<div class='row justify-content-center'>
+    <div class='col-6'>
+        <div class='border p-5'>
+          <div class="invalid-feedback d-block">${message}</div>
+          <sign-in-form></sign-in-form>
+        </div>
+    </div>
+</div>
+</div> */

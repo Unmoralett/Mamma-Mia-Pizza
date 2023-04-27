@@ -244,7 +244,7 @@ class CartPage extends Component {
                       <p class="font-italic mb-4">Если Вы имеете промокод, введите в поле ниже</p>
                       <div class="input-group mb-4 border rounded-pill p-0">
                         <form class='d-flex' enctype='multipart/form-data'>
-                          <input name="coupon" type="text" placeholder="Промокод" class="form-control border-0 p-2 rounded-pill me-auto">
+                          <input name="coupon" type="text" placeholder="LIKE" class="form-control border-0 p-2 rounded-pill me-auto">
                           <div class="input-group-append border-0 w-60 p-1">
                             <button type="submit" class="btn btn-dark px-4 rounded-pill m-0 me-auto"><i class="fa fa-gift mr-2"></i> Применить</button>
                           </div>

@@ -39,7 +39,7 @@ class NavMenu extends Component {
                 return `
                 <it-link
                     classname="nav-link link-success border border-2 border-warning ${
-                      isActive ? 'active' : ''
+                      isActive ? 'active bg-warning text-dark' : ''
                     }"
                     href=""
                     content='${item.label}'
