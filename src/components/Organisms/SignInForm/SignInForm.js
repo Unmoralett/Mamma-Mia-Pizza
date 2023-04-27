@@ -14,7 +14,6 @@ class SignInForm extends Component {
   onSubmit = (evt) => {
     evt.preventDefault();
     const { email, password } = getFormData(evt.target);
-
     if (!email) {
       this.setError('email', 'The field is required');
       return;

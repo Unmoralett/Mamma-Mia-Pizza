@@ -36,16 +36,18 @@ class Tabs extends Component {
   render() {
     const items = this.getMenuItems();
     const activeItem = JSON.parse(this.props['active-item']);
-    
+
     return `
         <ul class="nav nav-tabs">
             ${items
               .map(({ id, label }) => {
                 return `
-                <li class="nav-item">
-                    <a class="nav-link ${
-                      id === activeItem.id ? 'active' : ''
-                    }" data-id='${id}' href="#">${label}</a>
+                <li class="nav nav-pills">
+                  <a class="nav-link 
+                    ${id === activeItem.id ? 'active bg-warning text-dark' : ''}" 
+                    data-id='${id}' 
+                    href="#">${label}
+                  </a>
                 </li>
                 `;
               })

@@ -10,8 +10,6 @@ import '../../Molecules/Pagination';
 import './CatalogProducts.scss';
 import { databaseService } from '../../../services/DatabaseService';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
-import { storageService } from '../../../services/StorageService';
-import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 
 class CatalogProducts extends Component {
   constructor() {

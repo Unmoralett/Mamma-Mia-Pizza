@@ -6,7 +6,7 @@ import '../../Organisms/Navigation';
 import '../../Molecules/StoreOpeningHours';
 import '../../Atoms/Link';
 import '../../Molecules/Basket';
-import '../../Organisms/Burger';
+import '../../Pages/CartPage';
 import './Header.scss';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { ADMIN } from '../../../constants/userRoles';
@@ -18,7 +18,6 @@ class Header extends Component {
   }
 
   getItems() {
-    // const user = JSON.parse(this.props.user);
     const user = storageService.getItem('user');
     if (user) {
       if (user.email === ADMIN) {
@@ -27,12 +26,14 @@ class Header extends Component {
         });
       } else {
         return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.adminPage].every(
+            (item) => item !== menuItem.href,
+          );
         });
       }
     } else {
       return appPages.filter((menuItem) => {
-        return [APP_ROUTES.signOut, APP_ROUTES.adminPage].every((item) => item !== menuItem.href);
+        return [APP_ROUTES.adminPage, APP_ROUTES.signOut].every((item) => item !== menuItem.href);
       });
     }
   }
@@ -45,7 +46,6 @@ class Header extends Component {
             <it-storeopeninghours></it-storeopeninghours>
             <it-headerphone></it-headerphone>
             <it-basket></it-basket>
-            <it-burger></it-burger>
         </header>
         `;
   }

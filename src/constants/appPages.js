@@ -42,13 +42,13 @@ export const appPages = [
     group: 2,
   },
   {
-    label: 'Выйти',
-    href: APP_ROUTES.signOut,
+    label: 'Админ',
+    href: APP_ROUTES.adminPage,
     group: 2,
   },
   {
-    label: 'Админ',
-    href: APP_ROUTES.adminPage,
+    label: 'Выйти',
+    href: APP_ROUTES.signOut,
     group: 2,
   },
 ];

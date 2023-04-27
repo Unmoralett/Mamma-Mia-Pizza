@@ -8,7 +8,7 @@ class CartCounter extends Component {
   static get observedAttributes() {
     return ['count'];
   }
-////////
+  ////////
   pressButton = (evt) => {
     evt.preventDefault();
     if (evt.target.closest('.btn-danger')) {

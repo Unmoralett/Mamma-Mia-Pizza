@@ -6,6 +6,7 @@ import './components/Pages/AdminPage';
 import './components/Pages/SignUpPage';
 import './components/Pages/SignInPage';
 import './components/Pages/SignOutPage';
+import './components/Pages/CartPage';
 import './components/Molecules/Preloader';
 import './components/Templates/Header';
 import { authService } from './services/Auth';
@@ -129,6 +130,12 @@ class App extends Component {
           path="${routes.adminPage.href}" 
           title="Админ" 
           component="${routes.adminPage.component}">
+        </app-route>
+
+        <app-route 
+          path="${routes.cartPage.href}" 
+          title="Корзина" 
+          component="${routes.cartPage.component}">
         </app-route>
 
         <app-route 

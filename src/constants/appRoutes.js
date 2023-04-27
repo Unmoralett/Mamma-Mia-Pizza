@@ -9,4 +9,5 @@ export const APP_ROUTES = {
   signIn: '/sign-in',
   signOut: '/sign-out',
   adminPage: '/admin-page',
+  cartPage: '/cart-page',
 };

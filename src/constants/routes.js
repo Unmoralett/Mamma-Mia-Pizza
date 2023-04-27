@@ -41,6 +41,10 @@ export const routes = {
     href: APP_ROUTES.adminPage,
     component: 'admin-page',
   },
+  cartPage: {
+    href: APP_ROUTES.cartPage,
+    component: 'cart-page',
+  },
   error: {
     href: '/error-page',
     component: 'error-page',
