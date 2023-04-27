@@ -14,6 +14,8 @@ class SignInPage extends Component {
     super();
     this.state = {
       isLoading: false,
+      signIn: 'connexion',
+      signUp: 'enregistrer active-section',
     };
   }
 
@@ -52,24 +54,28 @@ class SignInPage extends Component {
   };
 
   toggleEnter(evt) {
-    const signIn = document.querySelector('.connexion');
-    const signUp = document.querySelector('.enregistrer');
-    const btnSignUp = document.querySelector('.btn-enregistrer');
-    const btnSignIn = document.querySelector('.btn-connexion');
+    // const signIn = document.querySelector('.connexion');
+    // const signUp = document.querySelector('.enregistrer');
+    // const btnSignUp = document.querySelector('.btn-enregistrer');
+    // const btnSignIn = document.querySelector('.btn-connexion');
 
     if (evt.target.closest('.btn-enregistrer')) {
-      signIn.classList.add('remove-section');
-      signUp.classList.remove('active-section');
-      btnSignUp.classList.remove('active');
-      btnSignIn.classList.add('active');
-      console.log(signIn, signUp, btnSignUp, btnSignIn);
+      this.setState((state) => {
+        return {
+          ...state,
+          signIn: 'connexion remove-section',
+          signUp: 'enregistrer',
+        };
+      });
     }
     if (evt.target.closest('.btn-connexion')) {
-      signIn.classList.remove('remove-section');
-      signUp.classList.add('active-section');
-      btnSignUp.classList.add('active');
-      btnSignIn.classList.remove('active');
-      console.log(signIn, signUp, btnSignUp, btnSignIn);
+      this.setState((state) => {
+        return {
+          ...state,
+          signIn: 'connexion',
+          signUp: 'enregistrer active-section',
+        };
+      });
     }
   }
 
@@ -85,7 +91,7 @@ class SignInPage extends Component {
 
   render() {
     const message = this.state.errorMessage;
-
+    console.log(this.state.signIn, '////', this.state.signUp);
     return `
     <it-preloader is-loading='${this.state.isLoading}'>
     <div class="content">
@@ -95,7 +101,7 @@ class SignInPage extends Component {
           <a href="#enregistrer" class="a-toggle btn-enregistrer"><h2 class='h2'>SIGN UP</h2></a>
         </div>
 
-        <div class="connexion">
+        <div class="${this.state.signIn}">
           <div class="contact-form">
             <label class='label'>USERNAME</label>
             <input class='input' placeholder="" type="text">
@@ -107,7 +113,7 @@ class SignInPage extends Component {
           </div>
         </div>
         
-        <div class="enregistrer active-section">
+        <div class="${this.state.signUp}">
           <div class="contact-form">
             <label class='label'>USERNAME</label>
             <input class='input' placeholder="" type="text">
