@@ -1,4 +1,5 @@
 import { APP_EVENTS } from '../../constants/appEvents';
+import { APP_ROUTES } from '../../constants/appRoutes';
 import { eventEmmiter } from '../EventEmmiter';
 import { match } from './utils';
 
@@ -42,6 +43,8 @@ export class Router extends HTMLElement {
       this.activeRoute = matchedRoute;
       window.history.pushState(null, '', url);
       this.update();
+    } else {
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.errorPage });
     }
   }
   //Отрисовывает актиный роут

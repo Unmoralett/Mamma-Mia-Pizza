@@ -45,8 +45,8 @@ export const routes = {
     href: APP_ROUTES.cartPage,
     component: 'cart-page',
   },
-  error: {
-    href: '/error-page',
+  errorPage: {
+    href: APP_ROUTES.errorPage,
     component: 'error-page',
   },
 };

@@ -7,6 +7,7 @@ import './components/Pages/SignUpPage';
 import './components/Pages/SignInPage';
 import './components/Pages/SignOutPage';
 import './components/Pages/CartPage';
+import './components/Pages/ErrorPage';
 import './components/Molecules/Preloader';
 import './components/Templates/Header';
 import { authService } from './services/Auth';
@@ -139,9 +140,9 @@ class App extends Component {
         </app-route>
 
         <app-route 
-          path="${routes.error.href}" 
+          path="${routes.errorPage.href}" 
           title="Ошибка" 
-          component="${routes.error.component}">
+          component="${routes.errorPage.component}">
         </app-route>
 
         <app-outlet></app-outlet>

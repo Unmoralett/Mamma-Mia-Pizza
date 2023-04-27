@@ -10,4 +10,5 @@ export const APP_ROUTES = {
   signOut: '/sign-out',
   adminPage: '/admin-page',
   cartPage: '/cart-page',
+  errorPage: '/error-page',
 };
