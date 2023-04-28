@@ -41,8 +41,9 @@ class Basket extends Component {
       .reduce((acc, item) => acc + item.quantity, 0);
   };
 
-  onStorage = (evt) => {
-    const count = this.countProducts(evt.detail.data);
+  onStorage = () => {
+    const count = this.countProducts(localStorage.getItem('cartData'));
+    console.log(count)
     this.setProductsCount(count);
   };
 

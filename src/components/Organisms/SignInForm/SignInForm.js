@@ -38,20 +38,16 @@ class SignInForm extends Component {
   render() {
     return `
       <form enctype='multipart/form-data'>
-        <div class='mb-3'> 
-            <label class='form-label w-100'>
-                <p>Email</p>
-                <input name='email' type='email' class='form-control'>
-            </label>
+        <div class="login slide-up">
+          <div class="center">
+            <h2 class="form-title" id="login"><span>or</span>Войти</h2>
+            <div class="form-holder">
+              <input name='email' type="email" class="input form-control" placeholder="Email" />
+              <input name='password' type="password" class="input form-control" placeholder="Password" />
+            </div>
+            <button type='submit' class="btn submit-btn">Log in</button>
+          </div>
         </div>
-        <div class='mb-3'> 
-            <label class='form-label w-100'>
-                <p>Password</p>
-                <input name='password' type='password' class='form-control'>
-            </label>
-        </div>
-        
-        <button type='submit' class='btn rtn-primary'>Sign In</button>
       </form>
     `;
   }

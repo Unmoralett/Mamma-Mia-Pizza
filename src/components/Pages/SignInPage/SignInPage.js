@@ -14,8 +14,7 @@ class SignInPage extends Component {
     super();
     this.state = {
       isLoading: false,
-      signIn: 'connexion',
-      signUp: 'enregistrer active-section',
+      errorMessage: '',
     };
   }
 
@@ -53,87 +52,94 @@ class SignInPage extends Component {
     }
   };
 
-  toggleEnter(evt) {
-    // const signIn = document.querySelector('.connexion');
-    // const signUp = document.querySelector('.enregistrer');
-    // const btnSignUp = document.querySelector('.btn-enregistrer');
-    // const btnSignIn = document.querySelector('.btn-connexion');
+  //с регистрации
+  setIsLoading2 = (isLoading) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        isLoading,
+      };
+    });
+  };
 
-    if (evt.target.closest('.btn-enregistrer')) {
-      this.setState((state) => {
-        return {
-          ...state,
-          signIn: 'connexion remove-section',
-          signUp: 'enregistrer',
-        };
-      });
+  setError2 = (error) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        errorMessage: error,
+      };
+    });
+  };
+
+  register = async ({ detail }) => {
+    const { data } = detail;
+    this.setIsLoading2(true);
+    try {
+      const user = await authService.signUp(data.email, data.password);
+      eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
+    } catch (error) {
+      this.setError2(error.message);
+    } finally {
+      this.setIsLoading2(false);
     }
-    if (evt.target.closest('.btn-connexion')) {
-      this.setState((state) => {
-        return {
-          ...state,
-          signIn: 'connexion',
-          signUp: 'enregistrer active-section',
-        };
-      });
-    }
-  }
+  };
 
   componentDidMount() {
     eventEmmiter.on(APP_EVENTS.signIn, this.signIn);
-    this.addEventListener('click', this.toggleEnter);
+    eventEmmiter.on(APP_EVENTS.signUp, this.register);
+
+    const loginBtn = document.getElementById('login');
+    const signupBtn = document.getElementById('signup');
+
+    loginBtn.addEventListener('click', (e) => {
+      let parent = e.target.parentNode.parentNode;
+      Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+        if (element !== 'slide-up') {
+          parent.classList.add('slide-up');
+        } else {
+          signupBtn.parentNode.classList.add('slide-up');
+          parent.classList.remove('slide-up');
+        }
+      });
+    });
+
+    signupBtn.addEventListener('click', (e) => {
+      let parent = e.target.parentNode;
+      Array.from(e.target.parentNode.classList).find((element) => {
+        if (element !== 'slide-up') {
+          parent.classList.add('slide-up');
+        } else {
+          loginBtn.parentNode.parentNode.classList.add('slide-up');
+          parent.classList.remove('slide-up');
+        }
+      });
+    });
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.signIn, this.signIn);
-    this.addEventListener('click', this.toggleEnter);
+    eventEmmiter.off(APP_EVENTS.signUp, this.register);
   }
 
   render() {
     const message = this.state.errorMessage;
-    console.log(this.state.signIn, '////', this.state.signUp);
     return `
     <it-preloader is-loading='${this.state.isLoading}'>
-    <div class="content">
-      <div class="content_container">
-        <div class="menu">
-          <a href="#connexion" class="a-toggle btn-connexion"><h2 class='h2'>SIGN IN</h2></a>
-          <a href="#enregistrer" class="a-toggle btn-enregistrer"><h2 class='h2'>SIGN UP</h2></a>
-        </div>
+    <div class='container'>
+      <div class="form-structor">
+        <div class="invalid-feedback d-block">${message}</div>
 
-        <div class="${this.state.signIn}">
-          <div class="contact-form">
-            <label class='label'>USERNAME</label>
-            <input class='input' placeholder="" type="text">
-            
-            <label class='label'>PASSWORD</label>
-            <input class='input' placeholder="" type="text">
-  
-            <input class="input submit" value="SIGN IN" type="submit">
-          </div>
-        </div>
-        
-        <div class="${this.state.signUp}">
-          <div class="contact-form">
-            <label class='label'>USERNAME</label>
-            <input class='input' placeholder="" type="text">
-            
-            <label class='label'>E-MAIL</label>
-            <input class='input' placeholder="" type="text">	
-            
-            <label class='label'>PASSWORD</label>
-            <input class='input' placeholder="" type="text">
-            
-            <label class='label'>CONFIRM PASSWORD</label>
-            <input class='input' placeholder="" type="text">
-            
-            <input class="submit input" value="SIGN UP" type="submit">	
-              
-          </div>
+          <register-form></register-form>
+          <sign-in-form></sign-in-form>
+
+
+
+
+          
+
         </div>
       </div>
-    </div>
-  
     </it-preloader>
     `;
   }
@@ -146,7 +152,7 @@ customElements.define('sign-in-page', SignInPage);
 <div class='row justify-content-center'>
     <div class='col-6'>
         <div class='border p-5'>
-          <div class="invalid-feedback d-block">${message}</div>
+          
           <sign-in-form></sign-in-form>
         </div>
     </div>

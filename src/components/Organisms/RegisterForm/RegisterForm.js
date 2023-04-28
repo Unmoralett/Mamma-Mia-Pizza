@@ -25,8 +25,8 @@ class RegisterForm extends Component {
 
   onSubmit = (evt) => {
     evt.preventDefault();
-    const { email, password } = getFormData(evt.target);
 
+    const { email, password } = getFormData(evt.target);
     if (!email) {
       this.setError('email', 'The field is required');
       return;
@@ -51,34 +51,24 @@ class RegisterForm extends Component {
   render() {
     return `
       <form enctype='multipart/form-data'>
-        <div class='mb-3'> 
-            <label class='form-label w-100'>
-                <p>Email</p>
-                <input name='email' type='email' class='form-control'>
-            </label>
+
+        <div class="signup">
+          <h2 class="form-title" id="signup"><span>or</span>Регистрация</h2>
+          <div class="form-holder">
+            <input name='email' type="email" class="input form-control" placeholder="Email" />
             ${
               this.state.errors.email
-                ? `
-            <div class="invalid-feedback">
-              ${this.state.errors.email.message}
-            </div>`
+                ? `<div class="invalid-feedback">${this.state.errors.email.message}</div>`
                 : ''
             }
-            
+            <input name='password' type="password" class="input form-control" placeholder="Password" />
+            <input name='confirm-password' type="password" class="input form-control" placeholder="Confirm password" />
+          </div>
+          <button type='submit' class="btn submit-btn">Register</button>
         </div>
-        <div class='mb-3'> 
-            <label class='form-label w-100'>
-                <p>Password</p>
-                <input name='password' type='password' class='form-control'>
-            </label>
-        </div>
-        <div class='mb-3'> 
-            <label class='form-label w-100'>
-                <p>Confirm password</p>
-                <input name='confirm-password' type='password' class='form-control'>
-            </label>
-        </div>
-        <button type='submit' class='btn rtn-primary'>Register</button>
+
+
+
       </form>
     `;
   }
