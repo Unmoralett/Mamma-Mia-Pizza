@@ -6,6 +6,26 @@ class Gallery extends Component {
     return ['slides'];
   }
 
+  clearActive = (slides) => {
+    slides.forEach((item) => {
+      item.classList.remove('active');
+    });
+  };
+
+  addActive = (evt) => {
+    if (evt.target.closest('.gallery_slide')) {
+      const slides = document.querySelectorAll('.gallery_slide');
+      this.clearActive(slides);
+      evt.target.classList.add('active');
+    }
+  };
+
+  componentDidMount() {
+    this.addEventListener('click', this.addActive);
+  }
+
+  componentWillUnmount() {}
+
   render() {
     const slides = JSON.parse(this.props.slides);
     return `
@@ -14,7 +34,7 @@ class Gallery extends Component {
           .map((slide) => {
             return `
           <it-galleryslide
-            class='gallery_slide'
+            class='${slide.class}'
             style="background-image: url('${slide.src}')">
           </it-galleryslide>
           `;
