@@ -16,7 +16,7 @@ class AboutUs extends Component {
             </div>
             <it-image
                 class='AboutUs__image'
-                src='../../assets/images/Pizza_phone.png'>
+                src='../../assets/images/Pizza_phone2.png'>
             </it-image>
         </div>
         `;

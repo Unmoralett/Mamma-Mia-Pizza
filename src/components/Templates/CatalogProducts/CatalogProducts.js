@@ -1,7 +1,6 @@
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
-import { CATEGORY_PRODUCTS } from '../../../constants/categoryProducts';
 
 import '../../Atoms/Link';
 import '../../Organisms/CardProduct';
@@ -18,6 +17,7 @@ class CatalogProducts extends Component {
       products: [],
       limit: 8,
       currentPage: 1,
+      categories: [],
     };
     this.currentCategory = 0;
   }
@@ -67,16 +67,13 @@ class CatalogProducts extends Component {
   };
 
   onChangeCategoryMenu = (evt) => {
+    const categories = this.state.categories;
     const { label } = evt.detail;
-    if (label === 'Пицца') {
-      this.filterMenu(label);
-    }
-    if (label === 'Десерты') {
-      this.filterMenu(label);
-    }
-    if (label === 'Напитки') {
-      this.filterMenu(label);
-    }
+    categories.map((item) => {
+      if (item.name === label) {
+        this.filterMenu(label);
+      }
+    });
   };
 
   setProducts(products) {
@@ -97,9 +94,28 @@ class CatalogProducts extends Component {
     }
   };
 
+  getAllCAtegories = async () => {
+    try {
+      const data = await databaseService.getCollection(FIRESTORE_KEYS.categories);
+      this.setCategories(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  setCategories(categories) {
+    this.setState((state) => {
+      return {
+        ...state,
+        categories,
+      };
+    });
+  }
+
   componentDidMount() {
     this.getProducts();
     this.sliceData();
+    this.getAllCAtegories();
     eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmmiter.on(APP_EVENTS.changeCategoryMenu, this.onChangeCategoryMenu);
   }
@@ -114,7 +130,7 @@ class CatalogProducts extends Component {
         <div class='container' id='menu_page'>
             <h2 class='CatalogProducts_title'>Наше меню</h2>
             <it-navmenu 
-              links='${JSON.stringify(CATEGORY_PRODUCTS)}'
+              links='${JSON.stringify(this.state.categories)}'
               current='${this.currentCategory}'
             ></it-navmenu>
             <it-cardproduct 

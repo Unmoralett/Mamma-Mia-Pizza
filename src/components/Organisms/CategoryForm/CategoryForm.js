@@ -27,7 +27,8 @@ class CategoryForm extends Component {
     return `
         <form>
             <label class="form-label">Создать категорию</label>
-            <input name='name' type="text" class="form-control" placeholder="Введите имя категории" required>
+            <input name='name' type="text" class="form-control mb-3" placeholder="Введите имя категории" required>
+            <button type='submit' class='btn rtn-primary'>Save</button>
         </form>
     `;
   }

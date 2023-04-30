@@ -15,6 +15,7 @@ class CardProduct extends Component {
     if (evt.target.parentElement.closest('.addtocart')) {
       if (storageService.getItem('user')) {
         const allItems = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+
         const menu = JSON.parse(this.props.filteredproducts);
         storageService.setItem(APP_STORAGE_KEYS.cartData, [
           ...allItems,

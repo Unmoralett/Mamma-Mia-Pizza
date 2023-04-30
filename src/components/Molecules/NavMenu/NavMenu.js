@@ -35,15 +35,15 @@ class NavMenu extends Component {
             ${links
               .map((item) => {
                 const current = this.props.current;
-                const isActive = item.label === current;
+                const isActive = item.name === current;
                 return `
                 <it-link
-                    classname="nav-link link-success border border-2 border-warning ${
+                    classname="nav-link link-success border border-2 border-warning m-2 ${
                       isActive ? 'active bg-warning text-dark' : ''
                     }"
                     href=""
-                    content='${item.label}'
-                    data-label='${item.label}'
+                    content='${item.name}'
+                    data-label='${item.name}'
                 ></it-link>
                 `;
               })

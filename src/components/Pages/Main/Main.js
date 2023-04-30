@@ -16,10 +16,10 @@ class Main extends Component {
     return `
       <it-preloader is-loading='${JSON.stringify(false)}'>
         <it-mainpage></it-mainpage>
-        <it-catalogproducts></it-catalogproducts>
         <it-aboutus></it-aboutus>
-        <it-gallery slides='${JSON.stringify(appGallery)}'></it-gallery>
         <it-sales></it-sales>
+        <it-catalogproducts></it-catalogproducts>
+        <it-gallery slides='${JSON.stringify(appGallery)}'></it-gallery>
         <it-footer></it-footer>
       </it-preloader>
         `;

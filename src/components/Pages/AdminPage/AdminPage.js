@@ -42,11 +42,33 @@ class AdminPage extends Component {
 
   createCategory = ({ detail }) => {
     databaseService.createDocument(FIRESTORE_KEYS.categories, detail.data);
+    this.getAllCAtegories();
   };
 
   onChangeTab = ({ detail }) => {
     this.setActiveTab(detail.activeItem);
   };
+
+  getAllCAtegories = async () => {
+    this.setIsLoading(true);
+    try {
+      const data = await databaseService.getCollection(FIRESTORE_KEYS.categories);
+      this.setCategories(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  };
+
+  setCategories(categories) {
+    this.setState((state) => {
+      return {
+        ...state,
+        categories,
+      };
+    });
+  }
 
   createProduct = ({ detail }) => {
     this.setIsLoading(true);
@@ -68,6 +90,7 @@ class AdminPage extends Component {
   };
 
   componentDidMount() {
+    this.getAllCAtegories();
     eventEmmiter.on(APP_EVENTS.changeTab, this.onChangeTab);
     eventEmmiter.on(APP_EVENTS.createCategory, this.createCategory);
     eventEmmiter.on(APP_EVENTS.createProduct, this.createProduct);
@@ -101,7 +124,7 @@ class AdminPage extends Component {
                 <form>
                   <div class="mt-5">
                     <div class='mb-3 p-3'>
-                      ${forms[this.state.activeTab.id]}
+                      ${forms(this.state)[this.state.activeTab.id]}
                     </div>  
                   </div>
                 </form>

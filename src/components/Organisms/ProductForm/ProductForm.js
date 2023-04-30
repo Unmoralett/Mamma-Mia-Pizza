@@ -4,6 +4,10 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import { readerFile } from '../../../utils/readFile';
 
 class ProductForm extends Component {
+  static get observedAttributes() {
+    return ['categories'];
+  }
+
   onSubmit = (evt) => {
     evt.preventDefault();
     const preview = document.querySelector('.preview-image');
@@ -12,7 +16,6 @@ class ProductForm extends Component {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
     const isValid = Object.keys(data).every((key) => data[key] !== '');
     if (isValid) {
       eventEmmiter.emit(APP_EVENTS.createProduct, { data });
@@ -50,6 +53,8 @@ class ProductForm extends Component {
   }
 
   render() {
+    const categories = JSON.parse(this.props.categories);
+    console.log(categories);
     return `
         <form enctype='multipart/form-data'>
             <div class='mb-3'> 
@@ -60,8 +65,14 @@ class ProductForm extends Component {
             </div>
             <div class='mb-3'> 
                 <label class='form-label w-100'>
-                    <p>Category</p>
-                    <input name='category' type='text' class='form-control'>
+                  <p>Categories</p>
+                  <select name='category' class="form-select" aria-label="Default select example">
+                    ${categories
+                      .map((item) => {
+                        return `<option value="${item.name}">${item.name}</option>`;
+                      })
+                      .join('')}
+                  </select>
                 </label>
             </div>
             <div class="mb-3">

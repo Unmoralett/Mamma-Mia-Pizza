@@ -1,29 +1,18 @@
 
-.card-group {
-    margin: 10% 0;
-    text-align: center;
-}
-.card-title {
-    font-family: 'Bungee Spice', cursive;
-}
+
 .sales {
-    background: url(../../../assets/images/bg_sales.jpg) no-repeat;
+    background: url('../../../assets/images/bg_4.jpg') no-repeat fixed;
     background-size: cover;
-    // height: 90vh;
+     height: 70vh;
     &_title {
-    font-family: 'Bungee Spice', cursive;
-    text-align: center;
-    text-transform: uppercase;
-    padding-top: 10vh;
+      font-family: 'Bungee Spice', cursive;
+      text-align: center;
+      text-transform: uppercase;
+      padding-top: 10vh;
+      color: white;
     }
 }
-.card-img-top {
-    height: 200px;
-    width: auto;
-    border-bottom: 2px solid #000;
-}
-
-
+  
 .swiper {
     width: 100%;
     padding-top: 50px;
@@ -40,4 +29,18 @@
   .swiper-slide img {
     display: block;
     width: 100%;
+  }
+
+  figcaption {
+    text-align: center;
+    color: white;
+  }
+  
+  .swiper-button {
+    &-prev {
+    color: #fc5f04;
+    }
+    &-next {
+      color: #fc5f04;
+    }
   }
