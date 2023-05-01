@@ -30,8 +30,10 @@ class Header extends Component {
               <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
               <it-storeopeninghours></it-storeopeninghours>
               <it-headerphone></it-headerphone>
-              <it-admin></it-admin>
-              <it-signoutlogo></it-signoutlogo>
+              <div>
+                <it-admin></it-admin>
+                <it-signoutlogo></it-signoutlogo>
+              </div>
               <it-basket></it-basket>
           </header>
         `;
