@@ -62,9 +62,9 @@ class Basket extends Component {
         <div class='header__basket'>
           <route-link to='${routes.cartPage.href}'>
             <it-image class='header__basket-img' src='../../assets/images/basket.png'></it-image>
-            <span class='header__basket-img-summ badge rounded-pill bg-success'>
-              ${this.state.productsCount}
-            </span>
+              <span class='header__basket-img-summ badge rounded-pill bg-success'>
+                ${this.state.productsCount}
+              </span>
           </route-link>
         </div>  
         `;

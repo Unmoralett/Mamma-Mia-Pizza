@@ -6,9 +6,11 @@ import '../../Organisms/Navigation';
 import '../../Molecules/StoreOpeningHours';
 import '../../Atoms/Link';
 import '../../Molecules/Basket';
+import '../../Molecules/LoginLogo';
+import '../../Molecules/AdminLogo';
+import '../../Molecules/SignOutLogo';
 import '../../Pages/CartPage';
 import './Header.scss';
-import { APP_ROUTES } from '../../../constants/appRoutes';
 import { ADMIN } from '../../../constants/userRoles';
 import { storageService } from '../../../services/StorageService';
 
@@ -17,37 +19,46 @@ class Header extends Component {
     return ['user'];
   }
 
-  getItems() {
+  render() {
     const user = storageService.getItem('user');
+
     if (user) {
       if (user.email === ADMIN) {
-        return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
-        });
+        return `
+          <header class='header'>
+              <it-logo></it-logo>     
+              <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
+              <it-storeopeninghours></it-storeopeninghours>
+              <it-headerphone></it-headerphone>
+              <it-admin></it-admin>
+              <it-signoutlogo></it-signoutlogo>
+              <it-basket></it-basket>
+          </header>
+        `;
       } else {
-        return appPages.filter((menuItem) => {
-          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.adminPage].every(
-            (item) => item !== menuItem.href,
-          );
-        });
-      }
-    } else {
-      return appPages.filter((menuItem) => {
-        return [APP_ROUTES.adminPage, APP_ROUTES.signOut].every((item) => item !== menuItem.href);
-      });
-    }
-  }
-
-  render() {
-    return `
+        return `
         <header class='header'>
             <it-logo></it-logo>     
-            <it-navigation items='${JSON.stringify(this.getItems())}'></it-navigation>
+            <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
             <it-storeopeninghours></it-storeopeninghours>
             <it-headerphone></it-headerphone>
+            <it-signoutlogo></it-signoutlogo>
             <it-basket></it-basket>
         </header>
         `;
+      }
+    } else {
+      return `
+    <header class='header'>
+        <it-logo></it-logo>     
+        <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
+        <it-storeopeninghours></it-storeopeninghours>
+        <it-headerphone></it-headerphone>
+        <it-login></it-login>
+        <it-basket></it-basket>
+    </header>
+    `;
+    }
   }
 }
 

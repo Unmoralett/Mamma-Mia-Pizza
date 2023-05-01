@@ -38,12 +38,13 @@ class NavMenu extends Component {
                 const isActive = item.name === current;
                 return `
                 <it-link
-                    classname="nav-link link-success border border-2 border-warning m-2 ${
-                      isActive ? 'active bg-warning text-dark' : ''
-                    }"
-                    href=""
-                    content='${item.name}'
-                    data-label='${item.name}'
+                  classname="nav-link text-dark border border-3 border-warning m-2 ${
+                    isActive ? 'active-nav bg-warning text-dark' : ''
+                  }"
+                  href=""
+                  content='${item.name}'
+                  img='${item.img}'
+                  data-label='${item.name}'
                 ></it-link>
                 `;
               })

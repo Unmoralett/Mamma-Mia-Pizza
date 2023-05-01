@@ -8,5 +8,15 @@
     width: 8vw;
     display: flex;
     justify-content: center;
+    border: #fc5f04;
+    transition: all 0.3s linear;
+    &:hover {
+
+        box-shadow: 2px 2px 3px 3px #0000003a;
+    }
     
+}
+.active-nav {
+    background-color: orange;
+    box-shadow: 2px 2px 3px 3px #0000003a;
 }

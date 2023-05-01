@@ -2,6 +2,7 @@ import { Component } from '../../../core/Component';
 import './Navigation.scss';
 import '../../../core/Router/Link';
 import '../../Atoms/Link';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 
 class Navigation extends Component {
   static get observedAttributes() {
@@ -29,28 +30,28 @@ class Navigation extends Component {
             <ul class="header__nav-ul">
                 ${nav
                   .map((item) => {
-                    if (item.group === 2) {
+                    if (item.label === 'Главная') {
                       return `
-                    <li>
-                      <route-link to='${item.href}'>
-                        <it-link 
-                            classname="header__nav-link"
-                            href="${item.href}"
-                            content="${item.label}"> 
-                        </it-link>
+                      <route-link to='${APP_ROUTES.main}'>
+                        <li>
+                            <it-link 
+                                classname="header__nav-link"
+                                href="${item.href}"
+                                content="${item.label}"> 
+                            </it-link>
+                        </li>
                       </route-link>
-                    </li>
-                `;
+                      `;
                     } else {
                       return `
-                    <li>
-                        <it-link 
-                            classname="header__nav-link"
-                            href="${item.href}"
-                            content="${item.label}"> 
-                        </it-link>
-                    </li>
-                `;
+                      <li>
+                          <it-link 
+                              classname="header__nav-link"
+                              href="${item.href}"
+                              content="${item.label}"> 
+                          </it-link>
+                      </li>
+                      `;
                     }
                   })
                   .join(' ')}

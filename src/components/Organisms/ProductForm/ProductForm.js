@@ -94,6 +94,12 @@ class ProductForm extends Component {
                     <textarea name='description' class="form-control" rows="3"></textarea>
                 </label>
             </div>
+            <div class="mb-3 d-none">
+                <label class="form-label w-100">
+                    <p>Quantity</p>
+                    <input name='quantity' type='number' class='form-control' value='1'>
+                </label>
+            </div>
             <button type='submit' class='btn rtn-primary'>Save</button>
         </form>
     `;

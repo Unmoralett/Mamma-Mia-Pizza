@@ -5,6 +5,10 @@ export const routes = {
     href: APP_ROUTES.main,
     component: 'it-main',
   },
+  mainPage: {
+    href: APP_ROUTES.mainPage,
+    component: 'it-mainpage',
+  },
   menuPage: {
     href: APP_ROUTES.menuPage,
     component: 'it-catalogproducts',

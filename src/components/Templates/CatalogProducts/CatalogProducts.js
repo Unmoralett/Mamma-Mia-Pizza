@@ -23,7 +23,7 @@ class CatalogProducts extends Component {
   }
 
   scrollMenu = () => {
-    window.scrollTo(0, 965, { behavior: 'smooth' });
+    window.scrollTo(0, 2947, { behavior: 'smooth' });
   };
 
   sliceData(currentPage = 1) {

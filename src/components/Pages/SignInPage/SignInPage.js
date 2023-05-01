@@ -126,19 +126,17 @@ class SignInPage extends Component {
     const message = this.state.errorMessage;
     return `
     <it-preloader is-loading='${this.state.isLoading}'>
-    <div class='container'>
-      <div class="form-structor">
-        <div class="invalid-feedback d-block">${message}</div>
+      <div class='container sss'>
 
+        <div class="invalid-feedback d-block">
+        ${message ? `<p>${'Ошибка при регистрации ' + message}</p>` : ''}
+        </div>
+
+        <div class="form-structor">
           <register-form></register-form>
           <sign-in-form></sign-in-form>
-
-
-
-
-          
-
         </div>
+
       </div>
     </it-preloader>
     `;
@@ -146,15 +144,3 @@ class SignInPage extends Component {
 }
 
 customElements.define('sign-in-page', SignInPage);
-
-/* <div class='container mt-5'>
-<h2 class='text-center mt-5'>Sign In</h2>
-<div class='row justify-content-center'>
-    <div class='col-6'>
-        <div class='border p-5'>
-          
-          <sign-in-form></sign-in-form>
-        </div>
-    </div>
-</div>
-</div> */

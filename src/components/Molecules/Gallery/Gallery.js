@@ -24,7 +24,9 @@ class Gallery extends Component {
     this.addEventListener('click', this.addActive);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.removeEventListener('click', this.addActive);
+  }
 
   render() {
     const slides = JSON.parse(this.props.slides);

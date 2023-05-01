@@ -1,5 +1,6 @@
 export const APP_ROUTES = {
   main: '/',
+  mainPage: '/#it-mainpage',
   menuPage: '/#menu_page',
   aboutUsPage: '/#about_us_page',
   galleryPage: '/#gallery_page',

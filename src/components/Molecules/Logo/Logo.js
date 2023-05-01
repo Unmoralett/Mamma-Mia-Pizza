@@ -10,7 +10,7 @@ class Logo extends Component {
           <it-link 
             class=' '
             href='/'
-            content="<it-image
+            content=" <it-image 
                         class='header__logo-img'
                         src='../../assets/images/logoR.png'>
                       </it-image>"
