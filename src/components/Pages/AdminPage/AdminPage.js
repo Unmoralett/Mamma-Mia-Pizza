@@ -40,7 +40,6 @@ class AdminPage extends Component {
   };
 
   createCategory = ({ detail }) => {
-    console.log('sdfsdfsdf  ')
     databaseService.createDocument(FIRESTORE_KEYS.categories, detail.data);
     this.getAllCAtegories();
   };
