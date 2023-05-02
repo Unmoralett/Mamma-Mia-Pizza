@@ -11,5 +11,4 @@ export const APP_EVENTS = {
   signUp: 'signUp',
   signIn: 'signIn',
   authorizeUser: 'authorizeUser',
-  tata: 'tata',
 };

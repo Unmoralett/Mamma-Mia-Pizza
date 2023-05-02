@@ -45,6 +45,7 @@ class SignInPage extends Component {
       storageService.setItem('user', user);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
+      window.location.reload();
     } catch (error) {
       this.setError(error.message);
     } finally {

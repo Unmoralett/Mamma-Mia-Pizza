@@ -2,7 +2,6 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
-import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 
 import '../../Atoms/Link';
 import '../../Atoms/Image';
@@ -42,14 +41,15 @@ class Basket extends Component {
   };
 
   onStorage = () => {
-    const count = this.countProducts(storageService.getItem('cartData') ?? []);
+    const item2 = storageService.getItem('cartData') ?? [];
+    const count = this.countProducts(item2);
     this.setProductsCount(count);
   };
 
   componentDidMount() {
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
-    const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
-    const count = this.countProducts(items);
+    const item2 = storageService.getItem('cartData') ?? [];
+    const count = this.countProducts(item2);
     this.setProductsCount(count);
   }
 

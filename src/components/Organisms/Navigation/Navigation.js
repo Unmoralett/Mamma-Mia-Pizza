@@ -25,13 +25,13 @@ class Navigation extends Component {
       let section = document.querySelector(link.hash);
       const main = document.getElementById('main_page');
 
-      if (main.offsetHeight >= fromTop) {
+      if (main?.offsetHeight >= fromTop) {
         navigationLinkMain.classList.add('active');
       } else {
         navigationLinkMain.classList.remove('active');
       }
 
-      if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+      if (section?.offsetTop <= fromTop && section?.offsetTop + section?.offsetHeight > fromTop) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -61,7 +61,7 @@ class Navigation extends Component {
                       <route-link to='${APP_ROUTES.main}'>
                         <li>
                             <it-link 
-                                classname="header__nav-link scrollspy_main active"
+                                classname="header__nav-link scrollspy_main"
                                 href="${item.href}"
                                 content="${item.label}"> 
                             </it-link>

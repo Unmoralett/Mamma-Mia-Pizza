@@ -53,4 +53,8 @@ export const routes = {
     href: APP_ROUTES.errorPage,
     component: 'error-page',
   },
+  confirmPage: {
+    href: APP_ROUTES.confirmPage,
+    component: 'confirm-page',
+  },
 };

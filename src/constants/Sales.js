@@ -1,10 +1,22 @@
 export const sales = [
   {
-    label: 'HAPPYBIRTHDAY',
+    label: 'СЫР',
+    percent: 34,
+  },
+  {
+    label: 'D120',
     percent: 20,
   },
   {
+    label: '4209',
+    percent: 30,
+  },
+  {
     label: 'LIKE',
-    percent: 20,
+    percent: 40,
+  },
+  {
+    label: 'РЕПОСТ',
+    percent: 80,
   },
 ];

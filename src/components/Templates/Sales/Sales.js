@@ -71,13 +71,13 @@ class Sales extends Component {
                     <div class="swiper-slide">
                         <figure>
                             <p><img src="../../../assets/images/sales4.jpg" alt="..."></p>
-                            <figcaption><strong>ПРОМОКОД "1+1"</strong></figcaption caption>    
+                            <figcaption><strong>ПРОМОКОД "LIKE"</strong></figcaption caption>    
                         </figure>
                     </div>
                     <div class="swiper-slide">
                         <figure>
                             <p><img src="../../../assets/images/sales5.jpg" alt="..."></p>
-                            <figcaption><strong>ПРОМОКОД "1+1"</strong></figcaption caption>    
+                            <figcaption><strong>ПРОМОКОД "РЕПОСТ"</strong></figcaption caption>    
                         </figure>
                     </div>
 

@@ -9,6 +9,7 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 import '../../../core/Router/Link';
 import '../../../constants/Sales';
 import { getFormData } from '../../../utils/form';
@@ -47,8 +48,8 @@ class CartPage extends Component {
     });
   };
 
-  onStorage = (evt) => {
-    this.setProducts(evt.detail.data);
+  onStorage = () => {
+    this.setProducts(storageService.getItem(APP_STORAGE_KEYS.cartData) ?? []);
   };
 
   onDeleteItem = (evt) => {
@@ -57,10 +58,10 @@ class CartPage extends Component {
       const items = this.state.products;
       const filteredItems = items
         .map((item) => {
-          if (item.id === Number(id)) {
+          if (item.id === id) {
             return {
               ...item,
-              quantity: item.quantity - 1,
+              quantity: 0,
             };
           }
           return item;
@@ -124,13 +125,7 @@ class CartPage extends Component {
             promocode: item.percent,
           };
         });
-      } else
-        this.setState((state) => {
-          return {
-            ...state,
-            promocode: 0,
-          };
-        });
+      }
     });
   };
 
@@ -165,22 +160,30 @@ class CartPage extends Component {
             <div class="pb-5">
               <div class="container">
                 <div class="row">
-                  <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                  <div class="col-lg-12 p-5 bg-white shadow-sm mb-3">
           
                     <div class="table-responsive">
                       <table class="table">
-                        <thead>
+                        <thead class='basket_table'>
                           <tr>
-                            <th scope="col" class="border-0 bg-light">
-                              <div class="p-2 px-3 text-uppercase">Товары</div>
+                            <th scope="col" class="border-0 bg-warning rounded-start">
+                              <div class="p-2 px-3 text-uppercase">
+                                <strong class="basket_table">Товары</strong>
+                              </div>
                             </th>
-                            <th scope="col" class="border-0 bg-light">
-                              <div class="py-2 text-uppercase">Стоимость</div>
+
+                            <th scope="col" class="border-0 bg-warning">
+                              <div class="py-2 text-uppercase">
+                                <strong class="basket_table">Стоимость</strong>
+                              </div>
                             </th>
-                            <th scope="col" class="border-0 bg-light">
-                              <div class="py-2 text-uppercase">Количество</div>
+
+                            <th scope="col" class="border-0 bg-warning">
+                              <div class="py-2 text-uppercase">
+                                <strong class="basket_table">Количество</strong>
+                              </div>
                             </th>
-                            <th scope="col" class="border-0 bg-light">
+                            <th scope="col" class="border-0 bg-warning rounded-end">
                               <div class="py-2 text-uppercase"></div>
                             </th>
                           </tr>
@@ -190,10 +193,10 @@ class CartPage extends Component {
                             .map((item) => {
                               return `
                               <tr>
-                                <th scope="row" class="border-0">
-                                  <div class="p-2">
+                                <th scope="row" class="border-1">
+                                  <div class="p-2 d-flex">
                                     <it-image
-                                          class='header__burger-pizzaCart_logo'
+                                          class='header__burger-pizzaCart_logo align-middle'
                                           src='${item.preview}'>
                                     </it-image>
                                     <div class="ml-3 d-inline-block align-middle">
@@ -202,8 +205,8 @@ class CartPage extends Component {
                                     </div>
                                   </div>
                                 </th>
-                                <td class="border-0 align-middle"><strong>${item.price} BYN</strong></td>
-                                <td class="border-0 align-middle"><strong>
+                                <td class="border-1 align-middle"><strong>${item.price} BYN</strong></td>
+                                <td class="border-1 align-middle"><strong>
                                   <div class="cart-counter">
                                     <button type="button" class="cart-counter-remove" data-id='${item.id}'>
                                       <svg width="10" height="10" viewBox="0 0 10 10" class="icon" data-id='${item.id}'>
@@ -218,7 +221,7 @@ class CartPage extends Component {
                                       </button>
                                     </div></strong>
                                 </td>
-                                <td class="border-0 align-middle">
+                                <td class="border-1 align-middle">
                                   <it-button
                                     type="button"
                                     classname="btn-close"
@@ -239,20 +242,24 @@ class CartPage extends Component {
           
                 <div class="row py-5 p-4 bg-white rounded shadow-sm">
                   <div class="col-lg-6">
-                    <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Промокод</div>
+                    <div class="bg-warning rounded px-4 py-3 text-uppercase font-weight-bold basket_table">
+                      <strong class="basket_table">Промокод</strong>
+                    </div>
                     <div class="p-4">
                       <p class="font-italic mb-4">Если Вы имеете промокод, введите в поле ниже</p>
-                      <div class="input-group mb-4 border rounded-pill p-0">
+                      <div class="input-group mb-4 border rounded p-0 ssss">
                         <form class='d-flex' enctype='multipart/form-data'>
-                          <input name="coupon" type="text" placeholder="LIKE" class="form-control border-0 p-2 rounded-pill me-auto">
+                          <input name="coupon" type="text" placeholder="LIKE" class="form-control border-0 p-2 me-auto">
                           <div class="input-group-append border-0 w-60 p-1">
-                            <button type="submit" class="btn btn-dark px-4 rounded-pill m-0 me-auto"><i class="fa fa-gift mr-2"></i> Применить</button>
+                            <button type="submit" class="btn btn-dark px-4 m-0 me-auto bg-warning list-group-item-warning basket_table"><i class="fa fa-gift mr-2"></i>Применить</button>
                           </div>
                         </form>
                       </div>
                     </div>
 
-                    <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Комментарий к заказу</div>
+                    <div class="bg-warning rounded px-4 py-3 text-uppercase font-weight-bold basket_table">
+                      <strong class="basket_table">Комментарий к заказу</strong>
+                    </div>
                     <div class="p-4">
                       <p class="font-italic mb-4">Укажите пожелания к заказу</p>
                       <textarea name="comment" cols="30" rows="2" class="form-control"></textarea>
@@ -260,32 +267,38 @@ class CartPage extends Component {
                   </div>
 
                   <div class="col-lg-6">
-                    <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">
+                    <div class="bg-warning rounded px-4 py-3 text-uppercase font-weight-bold basket_table">
+                    <strong class="basket_table">
                       Сумма заказа
+                    </strong>
+                      
                     </div>
                     <div class="p-4">
                       <ul class="list-unstyled mb-4">
                         <li class="d-flex justify-content-between py-3 border-bottom">
-                          <strong class="text-muted">Всего товаров</strong>
+                          <strong class="basket_table">Всего товаров</strong>
                           <strong>${sumProducts}</strong>
                         </li>
 
                         <li class="d-flex justify-content-between py-3 border-bottom">
-                          <strong class="text-muted">Общая сумма товаров</strong>
+                          <strong class="basket_table">Общая сумма товаров</strong>
                           <strong>${sumPrice} BYN</strong>
                         </li>
 
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Скидка</strong>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="basket_table">Скидка</strong>
                           <strong>
                             ${priceDiscount} BYN
                           </strong>
                         </li>
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">К оплате</strong>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="basket_table">К оплате</strong>
                           <h5 class="font-weight-bold">
                             ${totalPrice} BYN
                           </h5>
                         </li> 
-                      </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Оформить заказ</a>
+                      </ul>
+                      <a href="${
+                        APP_ROUTES.confirmPage
+                      }" class="btn btn-dark py-2 btn-block bg-warning list-group-item-warning"><strong class="basket_table">Оформить заказ</strong></a>
                     </div>
                   </div>
 
@@ -298,15 +311,15 @@ class CartPage extends Component {
         </it-preloader>
         `;
     } else {
-      console.log(false);
       return `
-      <div class='container'>
-        <img src="https://dodopizza-a.akamaihd.net/site-static/dist/121df529925b0f43cc73.svg" class="image">
-        <h2>Ой, пусто!</h2>
-        <div>Ваша корзина пуста, откройте «Меню» и выберите по  равившийся товар. Дальше мы сделаем всё сами</div>
+      <div class='container container_clear'>
+        <img src="https://dodopizza-a.akamaihd.net/site-static/dist/121df529925b0f43cc73.svg" class="container_clear_image">
+        <h1 class="d-flex justify-content-center">Ой, пусто!</h1>
+        <div class="d-flex justify-content-center">Ваша корзина пуста, откройте «Меню» и выберите понравившийся Вам товар.</div>
       </div>
       `;
     }
   }
 }
+
 customElements.define('cart-page', CartPage);

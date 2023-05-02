@@ -14,6 +14,7 @@ class SignOutPage extends Component {
         eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
         eventEmmiter.emit(APP_EVENTS.authorizeUser, { user: null });
         storageService.removeItem('user');
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);

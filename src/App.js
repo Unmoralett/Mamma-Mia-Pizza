@@ -8,6 +8,7 @@ import './components/Pages/SignInPage';
 import './components/Pages/SignOutPage';
 import './components/Pages/CartPage';
 import './components/Pages/ErrorPage';
+import './components/Pages/ConfirmPage';
 import './components/Molecules/Preloader';
 import './components/Templates/Header';
 import { authService } from './services/Auth';
@@ -143,6 +144,12 @@ class App extends Component {
           path="${routes.errorPage.href}" 
           title="Ошибка" 
           component="${routes.errorPage.component}">
+        </app-route>
+
+        <app-route 
+          path="${routes.confirmPage.href}" 
+          title="Ошибка" 
+          component="${routes.confirmPage.component}">
         </app-route>
 
         <app-outlet></app-outlet>

@@ -12,4 +12,5 @@ export const APP_ROUTES = {
   adminPage: '/admin-page',
   cartPage: '/cart-page',
   errorPage: '/error-page',
+  confirmPage: '/confirm-page',
 };
