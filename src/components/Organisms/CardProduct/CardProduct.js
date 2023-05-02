@@ -45,9 +45,9 @@ class CardProduct extends Component {
                     <img alt="pizza1" src='${item.preview}'>
                     <div>
                         <h3 class="menu__product-title">${item.title}</h3>
-                        <p class="menu__product-price">${item.price} BYN</p>
+                        <p class="menu__product-price"><strong>${item.price} BYN</strong></p>
                         <p class="menu__product-descr">${item.description}</p>
-                        <a type='submit' class='addtocart'>
+                        <a type='submit' class='addtocart'> 
                           <p data-id='${index}'>В корзину</p>
                         </a>
                     </div>
