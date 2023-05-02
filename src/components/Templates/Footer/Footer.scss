@@ -4,7 +4,7 @@ ul {
 }
 .footer-section {
   background: url('../../../assets/images/bg_4.jpg') no-repeat fixed;
-  
+  transition: all 0.2s ease-out;
   position: relative;
 }
 .footer-cta {
@@ -15,6 +15,10 @@ ul {
   font-size: 30px;
   float: left;
   margin-top: 8px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: scale(1.2);  
+  }
 }
 .cta-text {
   padding-left: 15px;
@@ -61,11 +65,13 @@ ul {
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
   margin-bottom: 20px;
+  
 }
 .footer-social-icon a {
   color: #fff;
   font-size: 16px;
   margin-right: 15px;
+  
 }
 .footer-social-icon i {
   height: 40px;
@@ -73,6 +79,10 @@ ul {
   text-align: center;
   line-height: 38px;
   border-radius: 50%;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: scale(1.2);  
+  }
 }
 .facebook-bg{
   background: #3B5998;
@@ -104,9 +114,11 @@ ul {
   float: left;
   width: 50%;
   margin-bottom: 12px;
+
 }
 .footer-widget ul li a:hover{
   color: #ff5e14;
+  transition: all 0.2s ease-out;
 }
 .footer-widget ul li a {
   color: #878787;
@@ -158,4 +170,5 @@ ul {
 .footer-menu li a {
   font-size: 14px;
   color: #878787;
+  transition: all 0.2s ease-out;
 }

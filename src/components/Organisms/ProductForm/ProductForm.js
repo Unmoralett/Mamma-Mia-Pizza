@@ -54,18 +54,17 @@ class ProductForm extends Component {
 
   render() {
     const categories = JSON.parse(this.props.categories);
-    console.log(categories);
     return `
         <form enctype='multipart/form-data'>
             <div class='mb-3'> 
                 <label class='form-label w-100'>
-                    <p>Title</p>
-                    <input name='title' type='text' class='form-control'>
+                    <p>Название</p>
+                    <input name='title' type='text' class='form-control' placeholder='Введите имя нового продукта'>
                 </label>
             </div>
             <div class='mb-3'> 
                 <label class='form-label w-100'>
-                  <p>Categories</p>
+                  <p>Категория</p>
                   <select name='category' class="form-select" aria-label="Default select example">
                     ${categories
                       .map((item) => {
@@ -77,30 +76,24 @@ class ProductForm extends Component {
             </div>
             <div class="mb-3">
                 <label class="form-label w-100">
-                    <p>Download a file</p>
+                    <p>Загрузить изображение</p>
                     <input name='preview' class="form-control preview-input" type="file" accept='image/png, image/jpeg, image/jpg'>
                     <div class='preview-image'></div>
                 </label>
             </div>
             <div class='mb-3'> 
                 <label class='form-label w-100'>
-                    <p>Price</p>
+                    <p>Цена</p>
                     <input name='price' type='number' class='form-control'>
                 </label>
             </div>
             <div class="mb-3">
                 <label class="form-label w-100">
-                    <p>Product description</p>
+                    <p>Описание</p>
                     <textarea name='description' class="form-control" rows="3"></textarea>
                 </label>
             </div>
-            <div class="mb-3 d-none">
-                <label class="form-label w-100">
-                    <p>Quantity</p>
-                    <input name='quantity' type='number' class='form-control' value='1'>
-                </label>
-            </div>
-            <button type='submit' class='btn rtn-primary'>Save</button>
+            <button type='submit' class='btn rtn-primary'>Сохранить</button>
         </form>
     `;
   }

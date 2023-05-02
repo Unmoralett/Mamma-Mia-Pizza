@@ -25,8 +25,4 @@ export const appPages = [
     label: 'Контакты',
     href: APP_ROUTES.contactsPage,
   },
-  {
-    label: 'Поздравляем',
-    href: APP_ROUTES.confirmPage,
-  },
 ];

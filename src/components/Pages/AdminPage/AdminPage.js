@@ -9,7 +9,6 @@ import '../../Molecules/Tabs';
 import '../../Molecules/Preloader';
 import '../../Organisms/CategoryForm';
 import '../../Organisms/ProductForm';
-import '../../Organisms/SalesForm';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 import { firebaseStorageService } from '../../../services/FirebaseStorageService';
 
@@ -41,6 +40,7 @@ class AdminPage extends Component {
   };
 
   createCategory = ({ detail }) => {
+    console.log('sdfsdfsdf  ')
     databaseService.createDocument(FIRESTORE_KEYS.categories, detail.data);
     this.getAllCAtegories();
   };
@@ -107,7 +107,7 @@ class AdminPage extends Component {
 
         <div class="sidebar">
           <div class="sidebar__subsections">
-            <div class="sidebar__subsections-brand">Админка</div>
+            <div class="sidebar__subsections-brand"><strong>Админка</strong></div>
             <ul>
               <it-tabs 
                 menu-items='${JSON.stringify(menuItems)}'
@@ -121,13 +121,13 @@ class AdminPage extends Component {
           <div class="content__main">
             <div class="content__main-page">
               <div class="box" style="height:100vh;">
-                <form>
+                
                   <div class="mt-5">
                     <div class='mb-3 p-3'>
                       ${forms(this.state)[this.state.activeTab.id]}
                     </div>  
                   </div>
-                </form>
+                
               </div>
             </div>
           </div>
