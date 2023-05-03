@@ -1,9 +1,9 @@
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
+import { APP_EVENTS } from '../../../constants/appEvents';
 
 import './NavMenu.scss';
 import '../../Atoms/Link';
-import { APP_EVENTS } from '../../../constants/appEvents';
 
 class NavMenu extends Component {
   static get observedAttributes() {

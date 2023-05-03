@@ -1,14 +1,14 @@
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
+import { databaseService } from '../../../services/DatabaseService';
+import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 
 import '../../Atoms/Link';
 import '../../Organisms/CardProduct';
 import '../../Molecules/NavMenu';
 import '../../Molecules/Pagination';
 import './CatalogProducts.scss';
-import { databaseService } from '../../../services/DatabaseService';
-import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 
 class CatalogProducts extends Component {
   constructor() {

@@ -42,7 +42,7 @@ class Pagination extends Component {
             <nav aria-label="Page navigation example ">
                 <ul class="pagination justify-content-center ">
                     <li class="page-item ${isFirst ? 'disabled' : ''}">
-                      <a class="page-link previous-link" href="#">Previous</a>
+                      <a class="page-link previous-link text-dark" href="#">Previous</a>
                     </li>
                     ${count
                       .map((_, index) => {
@@ -51,7 +51,9 @@ class Pagination extends Component {
                         return `
                           <li class="page-item">
                             <a 
-                              class="page-link number-link ${isActive ? 'active' : ''}" 
+                              class="page-link text-dark number-link ${
+                                isActive ? ' active-nav bg-warning text-dark' : ''
+                              }" 
                               href="#"
                               data-page='${page}'
                               >${page}</a> 
@@ -60,7 +62,7 @@ class Pagination extends Component {
                       })
                       .join(' ')}
                     <li class="page-item ${isLast ? 'disabled' : ''}">
-                      <a class="page-link next-link" href="#">Next</a>
+                      <a class="page-link next-link text-dark" href="#">Next</a>
                     </li>
                 </ul>
             </nav>

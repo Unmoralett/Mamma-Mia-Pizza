@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+import { appGallery } from '../../../constants/appGallery';
 
 import '../../Templates/MainPage';
 import '../../Templates/Header';
@@ -9,7 +10,6 @@ import '../../Templates/Sales';
 import '../../Templates/Footer';
 import '../../Molecules/Preloader';
 import './Main.scss';
-import { appGallery } from '../../../constants/appGallery';
 
 class Main extends Component {
   render() {

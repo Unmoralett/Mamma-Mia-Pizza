@@ -93,7 +93,9 @@ class ProductForm extends Component {
                     <textarea name='description' class="form-control" rows="3"></textarea>
                 </label>
             </div>
-            <button type='submit' class='btn rtn-primary'>Сохранить</button>
+            <button type='submit' class='btn btn-dark py-2 btn-block bg-warning list-group-item-warning'>
+              Создать
+            </button>
         </form>
     `;
   }

@@ -1,19 +1,23 @@
 import { Component } from '../../../core/Component';
-import '../../Atoms/Image';
-import '../../Atoms/Button';
-import '../../Molecules/CartSummary';
-import '../../Molecules//CartCounter';
-import './CartPage.scss';
-import '../../Molecules/Preloader';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { APP_ROUTES } from '../../../constants/appRoutes';
-import '../../../core/Router/Link';
-import '../../../constants/Sales';
 import { getFormData } from '../../../utils/form';
 import { sales } from '../../../constants/Sales';
+
+import '../../Atoms/Image';
+import '../../Atoms/Button';
+import '../../Molecules/CartSummary';
+import '../../Molecules//CartCounter';
+import '../../Molecules/Preloader';
+import '../../Organisms/CalcCartPage';
+import '../../Organisms/PromoCartPage';
+import '../../Organisms/EmptyCart';
+import '../../../core/Router/Link';
+import '../../../constants/Sales';
+import './CartPage.scss';
 
 class CartPage extends Component {
   constructor() {
@@ -131,19 +135,19 @@ class CartPage extends Component {
 
   componentDidMount() {
     const items = storageService.getItem(APP_STORAGE_KEYS.cartData);
-    this.state.sumProducts = items.length;
+    this.state.sumProducts = items?.length;
     this.setProducts(items ?? []);
     this.addEventListener('click', this.onDeleteItem);
-    eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
     this.addEventListener('click', this.counter);
     this.addEventListener('submit', this.promocode);
+    eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
   }
 
   componentWillUnmount() {
     this.removeEventListener('click', this.onDeleteItem);
-    eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
     this.removeEventListener('click', this.counter);
     this.removeEventListener('submit', this.promocode);
+    eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
   }
 
   render() {
@@ -183,11 +187,13 @@ class CartPage extends Component {
                                 <strong class="basket_table">Количество</strong>
                               </div>
                             </th>
+
                             <th scope="col" class="border-0 bg-warning rounded-end">
                               <div class="py-2 text-uppercase"></div>
                             </th>
                           </tr>
                         </thead>
+
                         <tbody>
                           ${this.state.products
                             .map((item) => {
@@ -241,82 +247,31 @@ class CartPage extends Component {
                 </div>
           
                 <div class="row py-5 p-4 bg-white rounded shadow-sm">
-                  <div class="col-lg-6">
-                    <div class="bg-warning rounded px-4 py-3 text-uppercase font-weight-bold basket_table">
-                      <strong class="basket_table">Промокод</strong>
-                    </div>
-                    <div class="p-4">
-                      <p class="font-italic mb-4">Если Вы имеете промокод, введите в поле ниже</p>
-                      <div class="input-group mb-4 border rounded p-0 ssss">
-                        <form class='d-flex' enctype='multipart/form-data'>
-                          <input name="coupon" type="text" placeholder="LIKE" class="form-control border-0 p-2 me-auto">
-                          <div class="input-group-append border-0 w-60 p-1">
-                            <button type="submit" class="btn btn-dark px-4 m-0 me-auto bg-warning list-group-item-warning basket_table"><i class="fa fa-gift mr-2"></i>Применить</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
 
-                    <div class="bg-warning rounded px-4 py-3 text-uppercase font-weight-bold basket_table">
-                      <strong class="basket_table">Комментарий к заказу</strong>
-                    </div>
-                    <div class="p-4">
-                      <p class="font-italic mb-4">Укажите пожелания к заказу</p>
-                      <textarea name="comment" cols="30" rows="2" class="form-control"></textarea>
-                    </div>
+                  <div class="col-lg-6">
+                    <promo-cart-page></promo-cart-page>            
                   </div>
 
                   <div class="col-lg-6">
-                    <div class="bg-warning rounded px-4 py-3 text-uppercase font-weight-bold basket_table">
-                    <strong class="basket_table">
-                      Сумма заказа
-                    </strong>
-                      
-                    </div>
-                    <div class="p-4">
-                      <ul class="list-unstyled mb-4">
-                        <li class="d-flex justify-content-between py-3 border-bottom">
-                          <strong class="basket_table">Всего товаров</strong>
-                          <strong>${sumProducts}</strong>
-                        </li>
-
-                        <li class="d-flex justify-content-between py-3 border-bottom">
-                          <strong class="basket_table">Общая сумма товаров</strong>
-                          <strong>${sumPrice} BYN</strong>
-                        </li>
-
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="basket_table">Скидка</strong>
-                          <strong>
-                            ${priceDiscount} BYN
-                          </strong>
-                        </li>
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="basket_table">К оплате</strong>
-                          <h5 class="font-weight-bold">
-                            ${totalPrice} BYN
-                          </h5>
-                        </li> 
-                      </ul>
-                      <a href="${
-                        APP_ROUTES.confirmPage
-                      }" class="btn btn-dark py-2 btn-block bg-warning list-group-item-warning"><strong class="basket_table">Оформить заказ</strong></a>
-                    </div>
+                    <calc-cart-page
+                      sumproducts='${sumProducts}' 
+                      sumprice='${sumPrice}'
+                      pricediscount='${priceDiscount}'
+                      totalprice='${totalPrice}' 
+                      href='${APP_ROUTES.confirmPage}'
+                    ></calc-cart-page>
                   </div>
 
                 </div>
               </div>
             </div>
           </div>
-          
-            </div>
-        </it-preloader>
-        `;
+        </div>
+      </it-preloader>
+      `;
     } else {
       return `
-      <div class='container container_clear'>
-        <img src="https://dodopizza-a.akamaihd.net/site-static/dist/121df529925b0f43cc73.svg" class="container_clear_image">
-        <h1 class="d-flex justify-content-center">Ой, пусто!</h1>
-        <div class="d-flex justify-content-center">Ваша корзина пуста, откройте «Меню» и выберите понравившийся Вам товар.</div>
-      </div>
+        <empty-page></empty-page>
       `;
     }
   }

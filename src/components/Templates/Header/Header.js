@@ -1,5 +1,8 @@
 import { Component } from '../../../core/Component';
 import { appPages } from '../../../constants/appPages';
+import { ADMIN } from '../../../constants/userRoles';
+import { storageService } from '../../../services/StorageService';
+
 import '../../Molecules/Logo';
 import '../../Molecules/HeaderPhone';
 import '../../Organisms/Navigation';
@@ -11,8 +14,6 @@ import '../../Molecules/AdminLogo';
 import '../../Molecules/SignOutLogo';
 import '../../Pages/CartPage';
 import './Header.scss';
-import { ADMIN } from '../../../constants/userRoles';
-import { storageService } from '../../../services/StorageService';
 
 class Header extends Component {
   static get observedAttributes() {
@@ -39,26 +40,26 @@ class Header extends Component {
         `;
       } else {
         return `
-        <header class='header'>
-            <it-logo></it-logo>     
-            <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
-            <it-storeopeninghours></it-storeopeninghours>
-            <it-headerphone></it-headerphone>
-            <it-signoutlogo></it-signoutlogo>
-            <it-basket></it-basket>
-        </header>
+          <header class='header'>
+              <it-logo></it-logo>     
+              <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
+              <it-storeopeninghours></it-storeopeninghours>
+              <it-headerphone></it-headerphone>
+              <it-signoutlogo></it-signoutlogo>
+              <it-basket></it-basket>
+          </header>
         `;
       }
     } else {
       return `
-    <header class='header'>
-        <it-logo></it-logo>     
-        <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
-        <it-storeopeninghours></it-storeopeninghours>
-        <it-headerphone></it-headerphone>
-        <it-login></it-login>
-        <it-basket></it-basket>
-    </header>
+          <header class='header'>
+              <it-logo></it-logo>     
+              <it-navigation items='${JSON.stringify(appPages)}'></it-navigation>
+              <it-storeopeninghours></it-storeopeninghours>
+              <it-headerphone></it-headerphone>
+              <it-login></it-login>
+              <it-basket></it-basket>
+          </header>
     `;
     }
   }

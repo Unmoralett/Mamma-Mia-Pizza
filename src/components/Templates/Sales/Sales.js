@@ -1,7 +1,7 @@
 import { Component } from '../../../core/Component';
-import './Sales.scss';
-
 import Swiper, { Navigation, Pagination, EffectCoverflow, Autoplay } from 'swiper';
+
+import './Sales.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

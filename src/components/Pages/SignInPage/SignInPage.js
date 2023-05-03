@@ -1,13 +1,14 @@
 import { Component } from '../../../core/Component';
-import '../../Organisms/RegisterForm';
-import '../../Organisms/SignInForm';
-import '../../Molecules/Preloader';
-import './SignInPage.scss';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { authService } from '../../../services/Auth';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 import { storageService } from '../../../services/StorageService';
+
+import '../../Organisms/RegisterForm';
+import '../../Organisms/SignInForm';
+import '../../Molecules/Preloader';
+import './SignInPage.scss';
 
 class SignInPage extends Component {
   constructor() {
@@ -23,7 +24,6 @@ class SignInPage extends Component {
       return {
         ...state,
         isLoading,
-        errorMessage: '',
       };
     });
   };
@@ -53,49 +53,27 @@ class SignInPage extends Component {
     }
   };
 
-  //с регистрации
-  setIsLoading2 = (isLoading) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        isLoading,
-      };
-    });
-  };
-
-  setError2 = (error) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        errorMessage: error,
-      };
-    });
-  };
-
   register = async ({ detail }) => {
     const { data } = detail;
-    this.setIsLoading2(true);
+    this.setIsLoading(true);
     try {
       const user = await authService.signUp(data.email, data.password);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
+      window.location.reload();
     } catch (error) {
-      this.setError2(error.message);
+      this.setError(error.message);
     } finally {
-      this.setIsLoading2(false);
+      this.setIsLoading(false);
     }
   };
 
-  componentDidMount() {
-    eventEmmiter.on(APP_EVENTS.signIn, this.signIn);
-    eventEmmiter.on(APP_EVENTS.signUp, this.register);
-
-    const loginBtn = document.getElementById('login');
+  swiper() {
     const signupBtn = document.getElementById('signup');
-
-    loginBtn.addEventListener('click', (e) => {
-      let parent = e.target.parentNode.parentNode;
-      Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+    const loginBtn = document.getElementById('login');
+    loginBtn.addEventListener('click', (evt) => {
+      let parent = evt.target.parentNode.parentNode;
+      Array.from(evt.target.parentNode.parentNode.classList).find((element) => {
         if (element !== 'slide-up') {
           parent.classList.add('slide-up');
         } else {
@@ -104,10 +82,9 @@ class SignInPage extends Component {
         }
       });
     });
-
-    signupBtn.addEventListener('click', (e) => {
-      let parent = e.target.parentNode;
-      Array.from(e.target.parentNode.classList).find((element) => {
+    signupBtn.addEventListener('click', (evt) => {
+      let parent = evt.target.parentNode;
+      Array.from(evt.target.parentNode.classList).find((element) => {
         if (element !== 'slide-up') {
           parent.classList.add('slide-up');
         } else {
@@ -116,6 +93,12 @@ class SignInPage extends Component {
         }
       });
     });
+  }
+
+  componentDidMount() {
+    this.swiper();
+    eventEmmiter.on(APP_EVENTS.signIn, this.signIn);
+    eventEmmiter.on(APP_EVENTS.signUp, this.register);
   }
 
   componentWillUnmount() {
@@ -127,7 +110,7 @@ class SignInPage extends Component {
     const message = this.state.errorMessage;
     return `
     <it-preloader is-loading='${this.state.isLoading}'>
-      <div class='container sss'>
+      <div class='container'>
 
         <div class="invalid-feedback d-block">
         ${message ? `<p>${'Ошибка при регистрации ' + message}</p>` : ''}

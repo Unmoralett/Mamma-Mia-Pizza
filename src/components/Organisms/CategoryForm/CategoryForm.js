@@ -29,7 +29,7 @@ class CategoryForm extends Component {
             <label class="form-label">Создать категорию</label>
             <input name='name' type="text" class="form-control mb-3" placeholder="Введите имя новой категории" required>
             <input name='img' type="text" class="form-control mb-3" placeholder="Смайлик новой категории 🍔" required>
-            <button type='submit' class='btn rtn-primary'>Создать</button>
+            <button type='submit' class='btn btn-dark py-2 btn-block bg-warning list-group-item-warning'>Создать</button>
         </form>
     `;
   }

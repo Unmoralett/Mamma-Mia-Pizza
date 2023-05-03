@@ -2,11 +2,11 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
+import { routes } from '../../../constants/routes';
 
 import '../../Atoms/Link';
 import '../../Atoms/Image';
 import './Basket.scss';
-import { routes } from '../../../constants/routes';
 
 class Basket extends Component {
   constructor() {

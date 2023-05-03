@@ -3,14 +3,14 @@ import { databaseService } from '../../../services/DatabaseService';
 import { forms, menuItems } from './constants';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
+import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
+import { firebaseStorageService } from '../../../services/FirebaseStorageService';
 
-import './AdminPage.scss';
 import '../../Molecules/Tabs';
 import '../../Molecules/Preloader';
 import '../../Organisms/CategoryForm';
 import '../../Organisms/ProductForm';
-import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
-import { firebaseStorageService } from '../../../services/FirebaseStorageService';
+import './AdminPage.scss';
 
 class AdminPage extends Component {
   constructor() {

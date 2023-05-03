@@ -12,13 +12,16 @@ class ConfirmPage extends Component {
       storageService.clear();
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
     }
-    // eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.main });
   };
+
   componentDidMount() {
     this.addEventListener('click', this.continue);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.removeEventListener('click', this.continue);
+  }
+
   render() {
     return `
         <div id='confirmPage'>

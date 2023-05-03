@@ -14,7 +14,6 @@ margin-left: 19%;
 	position: absolute;
     right: 41vw;
     top: 20vh;
-
 	overflow: hidden;
 	
 	&::after {
@@ -36,7 +35,6 @@ margin-left: 19%;
 		width: 65%;
 		z-index: 5;
 		-webkit-transition: all .3s ease;
-		
 		
 		&.slide-up {
 			top: 5%;

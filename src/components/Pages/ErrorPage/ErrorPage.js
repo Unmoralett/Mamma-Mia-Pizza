@@ -2,9 +2,6 @@ import { Component } from '../../../core/Component';
 import './ErrorPage.scss';
 
 class ErrorPage extends Component {
-  componentDidMount() {}
-
-  componentWillUnmount() {}
   render() {
     return `
         <div id="error">

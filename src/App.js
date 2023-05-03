@@ -3,7 +3,6 @@ import './components/Pages/Main';
 import { routes } from './constants/routes';
 import './core/Router/Router';
 import './components/Pages/AdminPage';
-import './components/Pages/SignUpPage';
 import './components/Pages/SignInPage';
 import './components/Pages/SignOutPage';
 import './components/Pages/CartPage';

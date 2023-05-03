@@ -1,8 +1,9 @@
 import { Component } from '../../../core/Component';
+import { APP_ROUTES } from '../../../constants/appRoutes';
+
 import './Navigation.scss';
 import '../../../core/Router/Link';
 import '../../Atoms/Link';
-import { APP_ROUTES } from '../../../constants/appRoutes';
 
 class Navigation extends Component {
   static get observedAttributes() {

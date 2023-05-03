@@ -6,6 +6,7 @@ class Footer extends Component {
   mockData = (evt) => {
     evt.preventDefault();
   };
+
   componentDidMount() {
     this.addEventListener('click', this.mockData);
   }
