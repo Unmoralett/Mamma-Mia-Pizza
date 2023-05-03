@@ -178,13 +178,13 @@ class CartPage extends Component {
 
                             <th scope="col" class="border-0 bg-warning">
                               <div class="py-2 text-uppercase">
-                                <strong class="basket_table">Стоимость</strong>
+                                <strong class="basket_table">Количество</strong>
                               </div>
                             </th>
 
                             <th scope="col" class="border-0 bg-warning">
                               <div class="py-2 text-uppercase">
-                                <strong class="basket_table">Количество</strong>
+                                <strong class="basket_table">Стоимость</strong>
                               </div>
                             </th>
 
@@ -207,25 +207,42 @@ class CartPage extends Component {
                                     </it-image>
                                     <div class="ml-3 d-inline-block align-middle">
                                       <h5 class="mb-0">${item.title}</h5>
-                                      <span class="text-muted font-weight-normal font-italic d-block">${item.description}</span>
+                                      <span class="text-muted font-weight-normal font-italic d-block">
+                                        ${item.description}
+                                      </span>
                                     </div>
                                   </div>
                                 </th>
-                                <td class="border-1 align-middle"><strong>${item.price} BYN</strong></td>
+                                
                                 <td class="border-1 align-middle"><strong>
                                   <div class="cart-counter">
-                                    <button type="button" class="cart-counter-remove" data-id='${item.id}'>
-                                      <svg width="10" height="10" viewBox="0 0 10 10" class="icon" data-id='${item.id}'>
-                                        <rect fill="#454B54" y="4" width="10" height="2" rx="1" data-id='${item.id}'></rect>
+                                    <button type="button" 
+                                    class="cart-counter-remove" 
+                                    data-id='${item.id}'>
+                                      <svg width="10" height="10" viewBox="0 0 10 10" class="icon" 
+                                        data-id='${item.id}'>
+                                        <rect fill="#454B54" y="4" width="10" height="2" rx="1" 
+                                          data-id='${item.id}'>
+                                        </rect>
                                       </svg>
                                     </button>
                                     <div class="cart-counter-count">${item.quantity}</div>
-                                      <button type="button" class="cart-counter-add" data-id='${item.id}'>
-                                        <svg width="10" height="10" viewBox="0 0 10 10" class="icon" data-id='${item.id}'>
-                                          <g fill="#454B54"><rect x="4" width="2" height="10" ry="1" data-id='${item.id}'></rect><rect y="4" width="10" height="2" rx="1" data-id='${item.id}'></rect></g>
+                                      <button type="button" 
+                                        class="cart-counter-add" data-id='${item.id}'>
+                                        <svg width="10" height="10" viewBox="0 0 10 10" class="icon" 
+                                          data-id='${item.id}'>
+                                          <g fill="#454B54"><rect x="4" width="2" height="10" ry="1" 
+                                            data-id='${item.id}'>
+                                            </rect><rect y="4" width="10" height="2" rx="1" 
+                                              data-id='${item.id}'>
+                                            </rect>
+                                          </g>
                                         </svg>
                                       </button>
                                     </div></strong>
+                                </td>
+                                <td class="border-1 align-middle">
+                                  <strong>${item.price * item.quantity} BYN</strong>
                                 </td>
                                 <td class="border-1 align-middle">
                                   <it-button
